@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/home/save" method="post">
+        <table>
+            <tr>
+                <td>숙소명</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>호스트</td>
+                <td><input type="text" name="host"></td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td><input type="text" name="address"></td>
+            </tr>
+            <tr>
+                <td>사진</td>
+                <td><input type="text" name="photo"></td>
+            </tr>
+            <tr>
+                <td>설명</td>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <td>최대인원</td>
+                <td><input type="text" name="guest"></td>
+            </tr>
+            <tr>
+                <td>침실 수</td>
+                <td><input type="text" name="room"></td>
+            </tr>
+            <tr>
+                <td>침대 수</td>
+                <td><input type="text" name="bed"></td>
+            </tr>
+            <tr>
+                <td>욕실 수</td>
+                <td><input type="text" name="bathroom"></td>
+            </tr>
+            <tr>
+                <td>편의시설</td>
+                <td>
+                    <label th:each="facilite : ${facilites}">
+                        <input type="radio" name="facilities" value="${facilite.name}">
+                        <span th:text="${facilite.name}"></span>
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">저장</button>
+    </form>
+</body>
+</html>
