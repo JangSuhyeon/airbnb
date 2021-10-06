@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 // 숙소
 @Getter
@@ -40,6 +42,10 @@ public class Home {
 
     @Column(nullable = false)
     private int bathroom; //욕실 수
+
+    @OneToMany
+    @JoinColumn
+    private List<Facilities> facilities = new ArrayList<>(); // 편의시설
 
     @Builder
     public Home(String name, String host, String address, String photo, String description, String guest, int room, int bed, int bathroom) {

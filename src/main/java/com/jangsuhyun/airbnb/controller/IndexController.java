@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    private HomeService homeService;
+    private final HomeService homeService;
 
     // Main
     @GetMapping("/")

@@ -1,11 +1,14 @@
 package com.jangsuhyun.airbnb.controller.dto;
 
+import com.jangsuhyun.airbnb.domain.Facilities;
 import com.jangsuhyun.airbnb.domain.Home;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 
 //숙소를 저장할 때 사용
 @Data
@@ -21,6 +24,7 @@ public class HomeSaveRequestDto {
     private int room; //침실 수
     private int bed; //침대 수
     private int bathroom; //욕실 수
+    private List<Facilities> facilities = new ArrayList<>(); // 편의시설
 
     @Builder
     public HomeSaveRequestDto(String name, String host, String address, String photo, String description, String guest, int room, int bed, int bathroom) {

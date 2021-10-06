@@ -47,7 +47,7 @@
                 <td>편의시설</td>
                 <td>
                     <label th:each="facilite : ${facilites}">
-                        <input type="radio" name="facilities" value="${facilite.name}">
+                        <input type="radio" name="facilities[]" th:value="${facilite.id}">
                         <span th:text="${facilite.name}"></span>
                     </label>
                 </td>

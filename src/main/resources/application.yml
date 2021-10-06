@@ -1,20 +1,17 @@
-server:
-  address: localhost
-  port: 8080
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: tngus6832
     url: jdbc:mysql://127.0.0.1:3306/airbnb
     username: airbnb
-  jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # MYSQL에 맞는 SQL 문법을 처리하기 위해
-    generate-ddl: true # DDL 정의시 데이터베이스의 고유 기능을 사용한다.
-    show-sql: true # API 호출시, SQL 문을 콘솔에 출력한다.
-    hibernate:
-      ddl-auto: update # 서버를 실행할 때마다 DB UPDATE
+    password: tngus6832
   sql:
     init: # DB 초기화
       schema-locations: classpath:db/schema.sql
       data-locations: classpath:db/data.sql
+      mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # MYSQL에 맞는 SQL 문법을 처리하기 위해
+    hibernate:
+      ddl-auto: update # 서버를 실행할 때마다 DB UPDATE
+    show-sql: true # API 호출시, SQL 문을 콘솔에 출력한다.
+    defer-datasource-initialization: true #Spring2.5 버전 이상부터 data.sql을 사용하고 싶으면 명시
