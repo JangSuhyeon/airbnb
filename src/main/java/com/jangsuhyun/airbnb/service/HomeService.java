@@ -3,6 +3,7 @@ package com.jangsuhyun.airbnb.service;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
 import com.jangsuhyun.airbnb.domain.Facilities;
 import com.jangsuhyun.airbnb.domain.FacilitiesRepository;
+import com.jangsuhyun.airbnb.domain.Home;
 import com.jangsuhyun.airbnb.domain.HomeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,11 @@ public class HomeService {
 
     private final HomeRepository homeRepository;
     private final FacilitiesRepository facilitiesRepository;
+
+    // 숙소 불러오기
+    public List<Home> findAll() {
+        return homeRepository.findAll();
+    }
 
     // 숙소 저장
     public Long save(HomeSaveRequestDto form) {

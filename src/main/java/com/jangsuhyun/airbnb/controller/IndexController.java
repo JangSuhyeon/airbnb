@@ -14,7 +14,12 @@ public class IndexController {
 
     // Main
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+
+        // 숙소 불러오기
+        model.addAttribute("homes",homeService.findAll());
+
+
         return "index";
     }
 

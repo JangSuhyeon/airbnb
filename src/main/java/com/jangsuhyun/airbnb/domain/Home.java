@@ -2,6 +2,7 @@ package com.jangsuhyun.airbnb.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 // 숙소
 @Getter
+@NoArgsConstructor
 @Entity
 public class Home {
 

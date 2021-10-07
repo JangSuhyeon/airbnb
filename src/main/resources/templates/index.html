@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Airbnb</title>
 </head>
 <body>
-    <a href="/home/add">숙소 추가</a>
+    <table>
+        <tr>
+            <td>숙소명</td>
+            <td>호스트</td>
+            <td>주소</td>
+            <td>사진</td>
+            <td>설명</td>
+            <td>최대인원</td>
+            <td>침실 수</td>
+            <td>침대 수</td>
+            <td>욕실 수</td>
+        </tr>
+        <tr th:each="home : ${homes}">
+            <td th:text="${home.name}"></td>
+            <td th:text="${home.host}"></td>
+            <td th:text="${home.address}"></td>
+            <td th:text="${home.photo}"></td>
+            <td th:text="${home.description}"></td>
+            <td th:text="${home.guest}"></td>
+            <td th:text="${home.room}"></td>
+            <td th:text="${home.bed}"></td>
+            <td th:text="${home.bathroom}"></td>
+            <td th:each="facilite : ${home.facilities}">
+                <span th:text="${facilite}"></span>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
