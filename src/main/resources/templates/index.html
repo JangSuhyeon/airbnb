@@ -5,6 +5,7 @@
     <title>Airbnb</title>
 </head>
 <body>
+    <a href="/home/add">추가</a>
     <table>
         <tr>
             <td>숙소명</td>
@@ -27,9 +28,9 @@
             <td th:text="${home.room}"></td>
             <td th:text="${home.bed}"></td>
             <td th:text="${home.bathroom}"></td>
-            <td th:each="facilite : ${home.facilities}">
-                <span th:text="${facilite}"></span>
-            </td>
+<!--            <td th:each="facilite : ${home.facilities}">-->
+<!--                <span th:text="${facilite}"></span>-->
+<!--            </td>-->
         </tr>
     </table>
 </body>

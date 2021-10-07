@@ -24,7 +24,7 @@ public class HomeSaveRequestDto {
     private int room; //침실 수
     private int bed; //침대 수
     private int bathroom; //욕실 수
-    private List<Facilities> facilities = new ArrayList<>(); // 편의시설
+//    private List<Facilities> facilities = new ArrayList<>(); // 편의시설
 
     @Builder
     public HomeSaveRequestDto(String name, String host, String address, String photo, String description, String guest, int room, int bed, int bathroom) {
