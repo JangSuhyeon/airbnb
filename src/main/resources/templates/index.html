@@ -28,9 +28,17 @@
             <td th:text="${home.room}"></td>
             <td th:text="${home.bed}"></td>
             <td th:text="${home.bathroom}"></td>
-<!--            <td th:each="facilite : ${home.facilities}">-->
-<!--                <span th:text="${facilite}"></span>-->
-<!--            </td>-->
+            <td th:each="facilite : ${home.facilities}">
+                <span th:text="${facilite.name}"></span>
+            </td>
+            <td>
+                <a th:href="@{'/home/edit/' + ${home.id}}">수정</a>
+            </td>
+            <td>
+                <form th:action="@{'/home/delete/' + ${home.id}}" method="post">
+                    <button>삭제</button>
+                </form>
+            </td>
         </tr>
     </table>
 </body>
