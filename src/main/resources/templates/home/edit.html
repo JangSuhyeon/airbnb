@@ -5,19 +5,19 @@
     <title>Airbnb | 숙소 수정</title>
 </head>
 <body>
-<form action="/home/modify" method="post">
+<form th:action="@{'/home/modify/' + ${home.id}}" method="post">
     <table>
         <tr>
             <td>숙소명</td>
-            <td><input type="text" th:value="${home.name}"></td>
+            <td><input type="text" name="name" th:value="${home.name}"></td>
         </tr>
         <tr>
             <td>호스트</td>
-            <td><input type="text" th:value="${home.host}"></td>
+            <td><input type="text" name="host" th:value="${home.host}"></td>
         </tr>
         <tr>
             <td>주소</td>
-            <td><input type="text" th:value="${home.address}"></td>
+            <td><input type="text" name="address" th:value="${home.address}"></td>
         </tr>
         <tr>
             <td>사진</td>
@@ -43,15 +43,15 @@
             <td>욕실 수</td>
             <td><input type="text" th:value="${home.bathroom}"></td>
         </tr>
-<!--        <tr>-->
-<!--            <td>편의시설</td>-->
-<!--            <td>-->
-<!--                <label th:each="facilite : ${facilities}">-->
-<!--                    <input type="checkbox" name="facilities[]" th:value="${facilite.id}">-->
-<!--                    <span th:text="${facilite.name}"></span>-->
-<!--                </label>-->
-<!--            </td>-->
-<!--        </tr>-->
+        <tr>
+            <td>편의시설</td>
+            <td>
+                <label th:each="facilite : ${facilites}">
+                    <input type="checkbox" name="facilities[]" th:value="${facilite.id}">
+                    <span th:text="${facilite.name}"></span>
+                </label>
+            </td>
+        </tr>
     </table>
     <button type="submit">저장</button>
 </form>

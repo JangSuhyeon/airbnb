@@ -40,6 +40,9 @@ public class IndexController {
         // 수정할 숙소 불러오기
         model.addAttribute("home", homeService.findById(id));
 
+        // 편의 시설 목록 가져오기
+        model.addAttribute("facilites",homeService.findAllFacilities());
+
         return "home/edit";
     }
 

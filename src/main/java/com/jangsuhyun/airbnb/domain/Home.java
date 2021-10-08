@@ -63,4 +63,18 @@ public class Home {
         this.bathroom = bathroom;
         this.facilities = facilities;
     }
+
+    public void update(String name, String host, String address, String photo, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
+        this.name = name;
+        this.host = host;
+        this.address = address;
+        this.photo = photo;
+        this.description = description;
+        this.guest = guest;
+        this.room = room;
+        this.bed = bed;
+        this.bathroom = bathroom;
+        this.facilities = facilities;
+    }
+
 }

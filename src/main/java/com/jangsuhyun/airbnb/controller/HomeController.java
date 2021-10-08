@@ -1,9 +1,12 @@
 package com.jangsuhyun.airbnb.controller;
 
+import com.jangsuhyun.airbnb.controller.dto.HomeModifyRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
 import com.jangsuhyun.airbnb.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,9 +28,11 @@ public class HomeController {
     }
 
     // 숙소 수정
-    @PostMapping("/home/modify")
-    public Long modifySave(HomeSaveRequestDto form) {
-        return homeService.
+    @Transactional
+    @PostMapping ("/home/modify/{id}")
+    public void modifySave(@PathVariable long id, HomeModifyRequestDto form) {
+        System.out.println(form.toString());
+        homeService.modify(id,form);
     }
 
 }
