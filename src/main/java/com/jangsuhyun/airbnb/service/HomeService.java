@@ -7,6 +7,7 @@ import com.jangsuhyun.airbnb.domain.FacilitiesRepository;
 import com.jangsuhyun.airbnb.domain.Home;
 import com.jangsuhyun.airbnb.domain.HomeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class HomeService {
 
     // 숙소 전체 불러오기
     public List<Home> findAll() {
-        return homeRepository.findAll();
+        return homeRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     // id로 숙소 불러오기
