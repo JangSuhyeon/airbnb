@@ -48,12 +48,10 @@ public class HomeService {
 
         // 수정할 숙소를 id로 찾기
         Home home = homeRepository.findById(id).get();
-        System.out.println("수정 전" + home.getName());
 
         home.update(form.getName(), form.getHost(), form.getAddress(), form.getPhoto(),
                 form.getDescription(), form.getGuest(), form.getRoom(), form.getBed(),
                 form.getBathroom(), form.getFacilities());
-        System.out.println("수정 후" + home.getName());
     }
 
 }
