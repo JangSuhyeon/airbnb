@@ -53,7 +53,7 @@ public class Home {
     private List<Photo> photo = new ArrayList<>();
 
     @Builder
-    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities, List<Photo> photo) {
+    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -63,7 +63,6 @@ public class Home {
         this.bed = bed;
         this.bathroom = bathroom;
         this.facilities = facilities;
-        this.photo = photo;
     }
 
     // 숙소 수정 시 업데이트

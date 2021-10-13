@@ -5,7 +5,7 @@
     <title>Airbnb | 숙소 추가</title>
 </head>
 <body>
-    <form action="/home/save" method="post">
+    <form action="/home/save" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>숙소명</td>
@@ -46,6 +46,12 @@
                         <input type="checkbox" name="facilities" th:value="${facilite.id}">
                         <span th:text="${facilite.name}"></span>
                     </label>
+                </td>
+            </tr>
+            <tr>
+                <td>사진</td>
+                <td>
+                    <input th:type="file" th:name="files" th:multiple="multiple">
                 </td>
             </tr>
         </table>

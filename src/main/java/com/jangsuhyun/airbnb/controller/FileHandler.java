@@ -1,6 +1,7 @@
 package com.jangsuhyun.airbnb.controller;
 
 import com.jangsuhyun.airbnb.controller.dto.PhotoDto;
+import com.jangsuhyun.airbnb.domain.Home;
 import com.jangsuhyun.airbnb.domain.Photo;
 import com.jangsuhyun.airbnb.service.PhotoService;
 import org.springframework.stereotype.Component;
