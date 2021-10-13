@@ -2,15 +2,17 @@ package com.jangsuhyun.airbnb.controller.dto;
 
 import com.jangsuhyun.airbnb.domain.Facilities;
 import com.jangsuhyun.airbnb.domain.Home;
+import com.jangsuhyun.airbnb.domain.Photo;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
-//숙소를 저장할 때 사용
+//숙소를 저장할 때 사용 (사진 필드 없음)
 @Data
 @NoArgsConstructor
 public class HomeSaveRequestDto {
@@ -18,7 +20,6 @@ public class HomeSaveRequestDto {
     private String name; //숙소명
     private String host; //호스트명
     private String address; //주소
-    private String photo; //사진
     private String description; //기본설명
     private String guest; //예약가능한 최대 인원
     private int room; //침실 수
@@ -27,11 +28,10 @@ public class HomeSaveRequestDto {
     private List<Facilities> facilities = new ArrayList<>(); // 편의시설
 
     @Builder
-    public HomeSaveRequestDto(String name, String host, String address, String photo, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
+    public HomeSaveRequestDto(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
-        this.photo = photo;
         this.description = description;
         this.guest = guest;
         this.room = room;
@@ -45,7 +45,6 @@ public class HomeSaveRequestDto {
                 .name(name)
                 .host(host)
                 .address(address)
-                .photo(photo)
                 .description(description)
                 .guest(guest)
                 .room(room)

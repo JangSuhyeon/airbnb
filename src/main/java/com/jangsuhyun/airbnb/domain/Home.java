@@ -27,9 +27,6 @@ public class Home {
     @Column(length = 100, nullable = false)
     private String address; //주소
 
-    @Column(length = 100, nullable = false)
-    private String photo; //사진
-
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description; //기본설명
 
@@ -50,31 +47,48 @@ public class Home {
     @JoinTable(name = "home_facilities", joinColumns = @JoinColumn(name = "home_id"), inverseJoinColumns = @JoinColumn(name = "facilities_id"))
     private List<Facilities> facilities = new ArrayList<>();
 
+    // 사진
+    @OneToMany(mappedBy = "home", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+               orphanRemoval = true)
+    private List<Photo> photo = new ArrayList<>();
+
     @Builder
-    public Home(String name, String host, String address, String photo, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
+    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities, List<Photo> photo) {
         this.name = name;
         this.host = host;
         this.address = address;
-        this.photo = photo;
         this.description = description;
         this.guest = guest;
         this.room = room;
         this.bed = bed;
         this.bathroom = bathroom;
         this.facilities = facilities;
+        this.photo = photo;
     }
 
-    public void update(String name, String host, String address, String photo, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
+    // 숙소 수정 시 업데이트
+    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities, List<Photo> photo) {
         this.name = name;
         this.host = host;
         this.address = address;
-        this.photo = photo;
         this.description = description;
         this.guest = guest;
         this.room = room;
         this.bed = bed;
         this.bathroom = bathroom;
         this.facilities = facilities;
+        this.photo = photo;
+    }
+
+    // Home에서 파일(사진) 처리 위함
+    public void addPhoto(Photo photo) {
+        this.photo.add(photo);
+
+        // Home에 파일(사진)이 저장되어있지 않은 경우
+        if (photo.getHome() != this) {
+            //파일(사진)저장
+            photo.setHome(this);
+        }
     }
 
 }

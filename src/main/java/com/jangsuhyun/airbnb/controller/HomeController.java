@@ -2,7 +2,9 @@ package com.jangsuhyun.airbnb.controller;
 
 import com.jangsuhyun.airbnb.controller.dto.HomeModifyRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
+import com.jangsuhyun.airbnb.domain.VO.HomeFileVO;
 import com.jangsuhyun.airbnb.service.HomeService;
+import com.jangsuhyun.airbnb.service.PhotoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +19,22 @@ public class HomeController {
 
     // 숙소 저장
     @PostMapping("/home/save")
-    public String save(HomeSaveRequestDto form) {
-        System.out.println("저장 완료 : " + form.toString());
-        homeService.save(form);
+    public String save(HomeFileVO homeFileVO) throws Exception {
+        System.out.println("저장 완료 : " + homeFileVO.toString());
+
+        HomeSaveRequestDto requestDto = HomeSaveRequestDto.builder()
+                .name(homeFileVO.getName())
+                .host(homeFileVO.getHost())
+                .address(homeFileVO.getAddress())
+                .description(homeFileVO.getDescription())
+                .guest(homeFileVO.getGuest())
+                .room(homeFileVO.getRoom())
+                .bed(homeFileVO.getBed())
+                .bathroom(homeFileVO.getBathroom())
+                .facilities(homeFileVO.getFacilities())
+                .build();
+
+        homeService.save(requestDto, homeFileVO.getFiles());
         return "redirect:/";
     }
 
