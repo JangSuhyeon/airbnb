@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,6 +32,7 @@ public class HomeService {
     }
 
     // 숙소 저장
+    @Transactional
     public Long save(HomeSaveRequestDto requestDto, List<MultipartFile> files)
          throws Exception {
         // 파일 처리를 위한 Home 객체 생성
@@ -54,11 +56,13 @@ public class HomeService {
     }
 
     // 숙소 삭제
+    @Transactional
     public void delete(long id) {
         homeRepository.deleteById(id);
     }
 
     // 숙소 수정
+    @Transactional
     public void modify(long id, HomeModifyRequestDto form) {
 
         // 수정할 숙소를 id로 찾기

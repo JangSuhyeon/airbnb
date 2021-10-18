@@ -11,6 +11,8 @@
 </head>
 <body class="main">
     <a href="/home/add">추가</a>
+
+    <img th:src="@{C:/Users/shjan/OneDrive/바탕 화면/airbnb/src/main/resources/images/20211018/186261133211300.jpg}">
     <table>
         <tr>
             <td>숙소명</td>
@@ -27,7 +29,6 @@
             <td th:text="${home.name}"></td>
             <td th:text="${home.host}"></td>
             <td th:text="${home.address}"></td>
-            <td th:text="${home.photo}"></td>
             <td th:text="${home.description}"></td>
             <td th:text="${home.guest}"></td>
             <td th:text="${home.room}"></td>
@@ -43,6 +44,10 @@
                 <form th:action="@{'/home/delete/' + ${home.id}}" method="post">
                     <button>삭제</button>
                 </form>
+            </td>
+            <td>
+                <div th:each="photo : ${home.photo}" th:utext='${"<img src=" + photo.filePath + ">"}'>
+                </div>
             </td>
         </tr>
     </table>

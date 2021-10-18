@@ -43,7 +43,7 @@ public class FileHandler {
             String absolutePath = new File("").getAbsolutePath() + File.separator + File.separator;
 
             // 파일을 저장할 세부 경로 지정
-            String path = "images" + File.separator + current_date;
+            String path = "src\\main\\resources\\images" + File.separator + current_date;
             File file = new File(path);
 
             // 디렉터리가 존재하지 않을 경우
@@ -81,7 +81,7 @@ public class FileHandler {
                 // 파일 DTO 생성
                 PhotoDto photoDto = PhotoDto.builder()
                         .origFileName(multipartFile.getOriginalFilename())
-                        .filePath(path + File.separator + new_file_name)
+                        .filePath(File.separator + "images" + File.separator + current_date + File.separator + new_file_name)
                         .fileSize(multipartFile.getSize())
                         .build();
 
