@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0' // 파일 관련 처리
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools' // 정적 리소스 실시간 처리를 위함
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'

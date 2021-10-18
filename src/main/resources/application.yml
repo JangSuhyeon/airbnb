@@ -7,15 +7,20 @@ spring:
   sql:
     init: # DB 초기화
       #schema-locations: classpath:db/schema.sql
-      data-locations: classpath:db/data.sql
+      #data-locations: classpath:db/data.sql
       mode: always
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # MYSQL에 맞는 SQL 문법을 처리하기 위해
     hibernate:
-      ddl-auto: create-drop # 시작과 종료에서 모두 drop한다.
+      ddl-auto: update # 시작과 종료에서 모두 drop한다.
     show-sql: true # API 호출시, SQL 문을 콘솔에 출력한다.
     defer-datasource-initialization: true #Spring2.5 버전 이상부터 data.sql을 사용하고 싶으면 명시
   servlet:
     multipart:
       max-file-size: 10MB # 파일의 최대 사이즈
       max-request-size: 20MB # 요청한 최대 사이즈
+  devtools:
+    livereload:
+      enabled: true
+  freemarker:
+    cache: false # 컴파일을 다시하지 않아도 됌
