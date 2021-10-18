@@ -10,15 +10,10 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
-<body class="main">
+<body>
 <header>
     <div class="header-container">
         <a href="/" class="logo"><img src="images/logo_wh.png"></a>
-        <ul class="mainMenu">
-            <li class="on"><a href="#none">숙소</a></li>
-            <li class="no"><a href="#none">체험</a></li>
-            <li class="no"><a href="#none">온라인 체험</a></li>
-        </ul>
         <ul class="subMenu">
             <li><a href="#none">호스트 되기</a></li>
             <li><a href="#none"><i class="fas fa-globe"></i></a></li>
@@ -40,7 +35,7 @@
         <h2 class="title">어디에서나, 여행은 살아보는 거야!</h2>
         <div class="page-container">
             <ul class="list">
-                <li>
+                <li th:onclick="'location.href=\''+ @{/list} + '\''">
                     <img src="images/page02_1.jpg">
                     <p>자연생활을 만끽할 수 있는 숙소</p>
                 </li>
@@ -60,5 +55,19 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+
+        var bodyOffset = jQuery('body').offset();
+        $(window).scroll(function() { // 윈도우 스크롤 이벤트 시
+            if ($(document).scrollTop() > bodyOffset.top) {
+                $('header').addClass('scroll');
+                $('.header-container .logo > img').attr("src", 'images/logo_pk.png');
+            } else {
+                $('header').removeClass('scroll');
+            }
+        });
+    })
+</script>
 </body>
 </html>

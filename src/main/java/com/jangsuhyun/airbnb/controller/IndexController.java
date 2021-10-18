@@ -26,7 +26,7 @@ public class IndexController {
         // 숙소 불러오기
         model.addAttribute("homes",homeService.findAll());
 
-        return "list";
+        return "home/list";
     }
 
     // 숙소 등록 페이지로 이동
