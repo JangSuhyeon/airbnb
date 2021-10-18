@@ -4,52 +4,61 @@
     <meta charset="UTF-8">
     <title>Aribnb</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <!-- 노토산스 -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body class="main">
-    <a href="/home/add">추가</a>
+<header>
+    <div class="header-container">
+        <a href="/" class="logo"><img src="images/logo_wh.png"></a>
+        <ul class="mainMenu">
+            <li class="on"><a href="#none">숙소</a></li>
+            <li class="no"><a href="#none">체험</a></li>
+            <li class="no"><a href="#none">온라인 체험</a></li>
+        </ul>
+        <ul class="subMenu">
+            <li><a href="#none">호스트 되기</a></li>
+            <li><a href="#none"><i class="fas fa-globe"></i></a></li>
+            <li>
+                <div class="hamburger"><i class="fas fa-bars"></i></div>
+                <div class="person"><i class="fas fa-user-circle"></i></div>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="main">
 
-    <img th:src="@{\images\20211018\191715445828400.jpg}">
-    <table>
-        <tr>
-            <td>숙소명</td>
-            <td>호스트</td>
-            <td>주소</td>
-            <td>사진</td>
-            <td>설명</td>
-            <td>최대인원</td>
-            <td>침실 수</td>
-            <td>침대 수</td>
-            <td>욕실 수</td>
-        </tr>
-        <tr th:each="home : ${homes}">
-            <td th:text="${home.name}"></td>
-            <td th:text="${home.host}"></td>
-            <td th:text="${home.address}"></td>
-            <td th:text="${home.description}"></td>
-            <td th:text="${home.guest}"></td>
-            <td th:text="${home.room}"></td>
-            <td th:text="${home.bed}"></td>
-            <td th:text="${home.bathroom}"></td>
-            <td th:each="facilite : ${home.facilities}">
-                <span th:text="${facilite.name}"></span>
-            </td>
-            <td>
-                <a th:href="@{'/home/edit/' + ${home.id}}">수정</a>
-            </td>
-            <td>
-                <form th:action="@{'/home/delete/' + ${home.id}}" method="post">
-                    <button>삭제</button>
-                </form>
-            </td>
-            <td>
-                <div th:each="photo : ${home.photo}" th:utext='${"<img src=" + photo.filePath + ">"}'>
-                </div>
-            </td>
-        </tr>
-    </table>
+    <!-- page01 -->
+    <div class="page01">
+    </div>
+
+    <!-- page02 -->
+    <div class="page02 page">
+        <h2 class="title">어디에서나, 여행은 살아보는 거야!</h2>
+        <div class="page-container">
+            <ul class="list">
+                <li>
+                    <img src="images/page02_1.jpg">
+                    <p>자연생활을 만끽할 수 있는 숙소</p>
+                </li>
+                <li>
+                    <img src="images/page02_2.jpg">
+                    <p>독특한 공간</p>
+                </li>
+                <li>
+                    <img src="images/page02_3.jpg">
+                    <p>집 전체</p>
+                </li>
+                <li>
+                    <img src="images/page02_4.jpg">
+                    <p>반려동물 동반 가능</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>

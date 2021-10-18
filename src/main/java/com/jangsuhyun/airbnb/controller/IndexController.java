@@ -1,16 +1,11 @@
 package com.jangsuhyun.airbnb.controller;
 
-import com.jangsuhyun.airbnb.domain.Home;
-import com.jangsuhyun.airbnb.domain.Photo;
 import com.jangsuhyun.airbnb.service.HomeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -20,12 +15,18 @@ public class IndexController {
 
     // Main
     @GetMapping("/")
-    public String index(Model model) {
+    public String index() {
+        return "index";
+    }
+
+    // 숙소 목록
+    @GetMapping("/list")
+    public String list(Model model) {
 
         // 숙소 불러오기
         model.addAttribute("homes",homeService.findAll());
 
-        return "index";
+        return "list";
     }
 
     // 숙소 등록 페이지로 이동

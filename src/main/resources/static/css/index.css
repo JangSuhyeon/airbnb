@@ -1,0 +1,155 @@
+/* header */
+header {
+    position: fixed;
+    width:100%;
+    height:80px;
+    line-height:80px;
+    padding:10px 80px;
+    box-sizing: border-box;
+}
+.header-container {
+    max-width: 1440px;
+    margin:0 auto;
+    position: relative;
+}
+.header-container .logo {
+    display: inline-block;
+}
+.header-container .logo > img {
+    width: 102px;
+    height:auto;
+    vertical-align: middle;
+}
+.header-container .mainMenu {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.header-container .mainMenu::after {
+    display: block;
+    clear: both;
+    content:'';
+}
+.header-container .mainMenu > li {
+    position: relative;
+    display: inline-block;
+    padding:0 16px;
+    line-height:40px;
+}
+.header-container .mainMenu > li > a {
+    color:#fff;
+}
+.header-container .mainMenu > li.no > a:hover {
+    color:rgba(255, 255, 255, .8)
+}
+.header-container .mainMenu > li.on::before {
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform: translateX(-50%);
+    width:18px;
+    height:2px;
+    background:#fff;
+}
+.header-container .subMenu {
+    position:absolute;
+    right:0;
+    top:50%;
+    transform: translateY(-50%);
+}
+.header-container .subMenu > li {
+    display: inline-block;
+    padding:0 12px;
+    line-height:40px;
+}
+.header-container .subMenu > li > a {
+    color:#fff;
+    font-size:14px;
+    font-weight: 600;
+}
+.header-container .subMenu > li > a:hover {
+    color:rgba(255, 255, 255, .8)
+}
+.header-container .subMenu > li > a > i {
+    font-size:15.5px;
+}
+.header-container .subMenu > li:last-child {
+    height:40px;
+    border-radius: 40px;
+    background:#fff;
+    margin:0 12px;
+    padding:0 8px 1px 13px;
+    vertical-align: middle;
+}
+.header-container .subMenu > li:last-child::after {
+    display: block;
+    claer:boht;
+    content:'';
+}
+.header-container .subMenu > li:last-child > div {
+    float:left;
+    cursor: pointer;
+}
+.header-container .subMenu > li:last-child .hamburger {
+    color:#717171;
+    margin-right:12px;
+}
+.header-container .subMenu > li:last-child .person {
+    font-size:28px;
+    color:#717171;
+}
+
+
+
+/* page01 */
+.page01 {
+    width:100%;
+    height:90vh;
+    background:url(../images/mainBanner_01.jpg);
+    background-size: cover;
+    background-position: top center;
+}
+
+/* page 공통 스타일 */
+.page {
+    width:100%;
+    max-width: 1440px;
+    padding:60px 80px 40px;
+    margin:0 auto;
+}
+.page > h2.title {
+    font-size:32px;
+    color:#222;
+    font-weight: bold;
+    margin-bottom:32px;
+}
+
+
+
+/* page02 */
+.page02 .page-container .list::after {
+    display:block;
+    clear: both;
+    content:'';
+}
+.page02 .page-container .list > li {
+    float:left;
+    width:calc(25% - 11.25px);
+    margin-right:15px;
+}
+.page02 .page-container .list > li:last-child {
+    margin-right:0;
+}
+.page02 .page-container .list > li > img {
+    width:100%;
+    height:auto;
+    border-radius: 10px;
+}
+.page02 .page-container .list > li > p {
+    margin-top:8px;
+    font-size:18px;
+    color:#222;
+    font-weight:bold;
+}
