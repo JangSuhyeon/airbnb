@@ -42,6 +42,9 @@ public class Home {
     @Column(nullable = false)
     private int bathroom; //욕실 수
 
+    @Column(nullable = false)
+    private int price; //비용
+
     // 편의시설
     @ManyToMany
     @JoinTable(name = "home_facilities", joinColumns = @JoinColumn(name = "home_id"), inverseJoinColumns = @JoinColumn(name = "facilities_id"))
@@ -53,7 +56,7 @@ public class Home {
     private List<Photo> photo = new ArrayList<>();
 
     @Builder
-    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
+    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -62,11 +65,12 @@ public class Home {
         this.room = room;
         this.bed = bed;
         this.bathroom = bathroom;
+        this.price = price;
         this.facilities = facilities;
     }
 
     // 숙소 수정 시 업데이트
-    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities, List<Photo> photo) {
+    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, List<Facilities> facilities, List<Photo> photo) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -75,6 +79,7 @@ public class Home {
         this.room = room;
         this.bed = bed;
         this.bathroom = bathroom;
+        this.price = price;
         this.facilities = facilities;
         this.photo = photo;
     }

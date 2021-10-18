@@ -70,7 +70,7 @@ public class HomeService {
 
         home.update(form.getName(), form.getHost(), form.getAddress(),
                 form.getDescription(), form.getGuest(), form.getRoom(), form.getBed(),
-                form.getBathroom(), form.getFacilities(), form.getPhoto());
+                form.getBathroom(), form.getPrice(), form.getFacilities(), form.getPhoto());
     }
 
 }

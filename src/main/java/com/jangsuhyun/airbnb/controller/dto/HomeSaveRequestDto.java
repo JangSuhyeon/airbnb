@@ -25,10 +25,11 @@ public class HomeSaveRequestDto {
     private int room; //침실 수
     private int bed; //침대 수
     private int bathroom; //욕실 수
+    private int price; //비용
     private List<Facilities> facilities = new ArrayList<>(); // 편의시설
 
     @Builder
-    public HomeSaveRequestDto(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, List<Facilities> facilities) {
+    public HomeSaveRequestDto(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -37,6 +38,7 @@ public class HomeSaveRequestDto {
         this.room = room;
         this.bed = bed;
         this.bathroom = bathroom;
+        this.price = price;
         this.facilities = facilities;
     }
 
@@ -50,6 +52,7 @@ public class HomeSaveRequestDto {
                 .room(room)
                 .bed(bed)
                 .bathroom(bathroom)
+                .price(price)
                 .facilities(facilities)
                 .build();
     }

@@ -49,7 +49,7 @@
                 <div class="swiper-pagination"></div>
             </div>
             <div class="info">
-                <p class="loc" th:text="${home.address}">Balamban, 중부 비사야, 필리핀</p><p class="price"><span>₩269,464</span> / 박</p>
+                <p class="loc" th:text="${home.address}">Balamban, 중부 비사야, 필리핀</p><p class="price">₩ <span th:text="${#numbers.formatDecimal(home.price, 0, 'COMMA', 0, 'POINT')}"></span> / 박</p>
             </div>
         </li>
     </ul>

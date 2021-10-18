@@ -32,6 +32,7 @@ public class HomeController {
                 .room(homeFileVO.getRoom())
                 .bed(homeFileVO.getBed())
                 .bathroom(homeFileVO.getBathroom())
+                .price(homeFileVO.getPrice())
                 .facilities(homeFileVO.getFacilities())
                 .build();
 
