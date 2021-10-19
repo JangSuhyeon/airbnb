@@ -7,7 +7,8 @@ header {
 .header-container {
     max-width: none ;
 }
-.header-container .subMenu > li > a {
+.header-container .subMenu > li > a,
+.header-container .subMenu > li > a > i {
     color:#222222;
 }
 
@@ -92,17 +93,20 @@ header {
 .home-list > li .swiper-pagination-bullet-active {
     opacity:1;
 }
-.home-list > li .swiper-button-next,
+.home-list > li .swiper-button-next, 
 .home-list > li .swiper-button-prev {
     width:auto;
     height:auto;
     margin-top: -12px;
     background:none;
-    color:#fff;
     font-size:20px;
     display: none;
 }
-.home-list > li:hover .swiper-button-next,
+.home-list > li .swiper-button-next > i,
+.home-list > li .swiper-button-prev > i {
+    color:#fff;
+}
+.home-list > li:hover .swiper-button-next, 
 .home-list > li:hover .swiper-button-prev {
     display: block;
 }

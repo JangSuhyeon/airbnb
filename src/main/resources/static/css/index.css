@@ -5,7 +5,7 @@ header {
     height:80px;
     padding:10px 80px;
     box-sizing: border-box;
-    -o-transition:all 0.5s ease; -moz-transition:all 0.5s ease; -ms-transition:all 0.5s ease; -webkit-transition:all 0.5s ease;
+    -o-transition:all 0.5s ease; -moz-transition:all 0.5s ease; -ms-transition:all 0.5s ease; -webkit-transition:all 0.5s ease; 
 }
 .header-container {
     position:absolute;
@@ -76,6 +76,7 @@ header {
     color:rgba(255, 255, 255, .8)
 }
 .header-container .subMenu > li > a > i {
+    color:#fff;
     font-size:15.5px;
 }
 .header-container .subMenu > li:last-child {
@@ -97,11 +98,15 @@ header {
     cursor: pointer;
 }
 .header-container .subMenu > li:last-child .hamburger {
-    color:#717171;
     margin-right:12px;
+}
+.header-container .subMenu > li:last-child .hamburger > i {
+    color:#717171;
 }
 .header-container .subMenu > li:last-child .person {
     font-size:28px;
+}
+.header-container .subMenu > li:last-child .person > i {
     color:#717171;
 }
 
@@ -111,6 +116,9 @@ header.scroll {
     border-bottom:1px solid #eee;
 }
 header.scroll .header-container .subMenu > li > a {
+    color:#222;
+}
+header.scroll .header-container .subMenu > li > a > i {
     color:#222;
 }
 

@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Aribnb</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/list.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <!-- 노토산스 -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
     <!-- 스와이프 플러그인 -->
-    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 <header>
     <div class="header-container">
-        <a href="/" class="logo"><img src="images/logo_pk.png"></a>
+        <a href="/" class="logo"><img src="../images/logo_pk.png"></a>
         <ul class="mainMenu">
             <li class="on"><a href="#none">숙소</a></li>
             <li class="no"><a href="#none">체험</a></li>
@@ -41,7 +41,7 @@
     <ul class="home-list">
         <li th:each="home : ${homes}">
             <div class="thumb swiper-container">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" th:onclick="'location.href=\''+ @{/home/detail/{id}(id = ${home.id})} + '\''">
                     <div class="swiper-slide" th:each="photo : ${home.photo}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
                 </div>
                 <div class="swiper-button-next"><i class="fas fa-chevron-circle-right"></i></div>

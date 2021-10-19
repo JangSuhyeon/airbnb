@@ -20,13 +20,22 @@ public class IndexController {
     }
 
     // 숙소 목록
-    @GetMapping("/list")
+    @GetMapping("/home/list")
     public String list(Model model) {
 
         // 숙소 불러오기
         model.addAttribute("homes",homeService.findAll());
 
         return "home/list";
+    }
+
+    // 숙소 상세 페이지
+    @GetMapping("/home/detail/{id}")
+    public String detail(@PathVariable Long id, Model model) {
+
+        model.addAttribute("home",homeService.findById(id));
+
+        return "home/detail";
     }
 
     // 숙소 등록 페이지로 이동
