@@ -24,6 +24,37 @@ public class HomeModifyRequestDto {
     private int bed; //침대 수
     private int bathroom; //욕실 수
     private int price; //비용
+    private String type; //숙소유형
     private List<Facilities> facilities = new ArrayList<>(); // 편의시설
-    private List<Photo> photo = new ArrayList<>(); // 파일(사진)
+
+    @Builder
+    public HomeModifyRequestDto(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, List<Facilities> facilities) {
+        this.name = name;
+        this.host = host;
+        this.address = address;
+        this.description = description;
+        this.guest = guest;
+        this.room = room;
+        this.bed = bed;
+        this.bathroom = bathroom;
+        this.price = price;
+        this.type = type;
+        this.facilities = facilities;
+    }
+
+    public Home toEntity() {
+        return Home.builder()
+                .name(name)
+                .host(host)
+                .address(address)
+                .description(description)
+                .guest(guest)
+                .room(room)
+                .bed(bed)
+                .bathroom(bathroom)
+                .price(price)
+                .type(type)
+                .facilities(facilities)
+                .build();
+    }
 }

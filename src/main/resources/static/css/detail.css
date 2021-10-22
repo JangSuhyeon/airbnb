@@ -130,6 +130,9 @@ header {
     font-weight: bold;
     margin:0 0 13px 0;
 }
+.detail-container > .detail > .title > h2 > span {
+    font-weight: bold;
+}
 .detail-container > .detail > .title .profile-img {
     position:absolute;
     right:0;

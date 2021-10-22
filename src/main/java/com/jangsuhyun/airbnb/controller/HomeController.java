@@ -21,7 +21,6 @@ public class HomeController {
     // 숙소 저장
     @PostMapping("/home/save")
     public String save(HomeFileVO homeFileVO) throws Exception {
-        System.out.println("저장 완료 : " + homeFileVO.toString());
 
         HomeSaveRequestDto requestDto = HomeSaveRequestDto.builder()
                 .name(homeFileVO.getName())
@@ -33,6 +32,7 @@ public class HomeController {
                 .bed(homeFileVO.getBed())
                 .bathroom(homeFileVO.getBathroom())
                 .price(homeFileVO.getPrice())
+                .type(homeFileVO.getType())
                 .facilities(homeFileVO.getFacilities())
                 .build();
 
@@ -50,9 +50,24 @@ public class HomeController {
     // 숙소 수정
     @Transactional
     @PostMapping ("/home/modify/{id}")
-    public String modifySave(@PathVariable long id, HomeModifyRequestDto form) {
-        homeService.modify(id,form);
-        System.out.println("수정 완료 : " + form.toString());
+    public String modifySave(@PathVariable long id, HomeFileVO homeFileVO) throws Exception {
+
+        HomeModifyRequestDto requestDto = HomeModifyRequestDto.builder()
+                .name(homeFileVO.getName())
+                .host(homeFileVO.getHost())
+                .address(homeFileVO.getAddress())
+                .description(homeFileVO.getDescription())
+                .guest(homeFileVO.getGuest())
+                .room(homeFileVO.getRoom())
+                .bed(homeFileVO.getBed())
+                .bathroom(homeFileVO.getBathroom())
+                .price(homeFileVO.getPrice())
+                .type(homeFileVO.getType())
+                .facilities(homeFileVO.getFacilities())
+                .build();
+        System.out.println("홈 컨트롤러!!");
+
+        homeService.modify(id, requestDto, homeFileVO.getFiles());
         return "redirect:/";
     }
 

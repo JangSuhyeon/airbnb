@@ -52,14 +52,14 @@
         <div class="detail-container">
             <div class="detail">
                 <div class="title"> 
-                    <h2>Mikheyla Fox님이 호스팅하는 트리하우스</h2>
+                    <h2><span th:text="${home.host}"></span>님이 호스팅하는 <span th:text="${home.type}"></span></h2>
                     <p>최대 인원 <span th:text="${home.guest}"></span>명 · 침실 <span th:text="${home.room}"></span>개 · 침대 <span th:text="${home.bed}"></span>개 · 욕실 <span th:text="${home.bathroom}"></span>개</p>
                     <div class="profile-img"><img src="/images/profile.jpg"></div>
                 </div>
             </div>
             <div class="btn-group">
                 <ul>
-                    <li><a href="">수정하기</a></li>
+                    <li><a th:href="@{/home/edit/{id}(id = ${home.id})}">수정하기</a></li>
                     <li><a href="">삭제하기</a></li>
                 </ul>
             </div>

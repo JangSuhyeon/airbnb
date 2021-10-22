@@ -45,6 +45,9 @@ public class Home {
     @Column(nullable = false)
     private int price; //비용
 
+    @Column(nullable = false)
+    private String type; //숙소 유형
+
     // 편의시설
     @ManyToMany
     @JoinTable(name = "home_facilities", joinColumns = @JoinColumn(name = "home_id"), inverseJoinColumns = @JoinColumn(name = "facilities_id"))
@@ -56,7 +59,7 @@ public class Home {
     private List<Photo> photo = new ArrayList<>();
 
     @Builder
-    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, List<Facilities> facilities) {
+    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -66,11 +69,12 @@ public class Home {
         this.bed = bed;
         this.bathroom = bathroom;
         this.price = price;
+        this.type = type;
         this.facilities = facilities;
     }
 
     // 숙소 수정 시 업데이트
-    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, List<Facilities> facilities, List<Photo> photo) {
+    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -80,8 +84,8 @@ public class Home {
         this.bed = bed;
         this.bathroom = bathroom;
         this.price = price;
+        this.type = type;
         this.facilities = facilities;
-        this.photo = photo;
     }
 
     // Home에서 파일(사진) 처리 위함

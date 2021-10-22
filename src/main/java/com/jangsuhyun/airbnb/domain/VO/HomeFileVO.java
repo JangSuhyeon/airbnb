@@ -19,6 +19,7 @@ public class HomeFileVO {
     private int bed; //침대 수
     private int bathroom; //욕실 수
     private int price; //비용
+    private String type; //숙소유형
     private List<Facilities> facilities = new ArrayList<>(); // 편의시설
     private List<MultipartFile> files; // 파일(사진)
 

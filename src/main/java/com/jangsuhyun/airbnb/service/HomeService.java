@@ -63,14 +63,29 @@ public class HomeService {
 
     // 숙소 수정
     @Transactional
-    public void modify(long id, HomeModifyRequestDto form) {
+    public void modify(long id, HomeModifyRequestDto requestDto, List<MultipartFile> files) throws Exception {
 
         // 수정할 숙소를 id로 찾기
-        Home home = homeRepository.findById(id).get();
+        Home home = homeRepository.findById(id).get(); // 수정 전 Home
+        Home new_home = requestDto.toEntity();
 
-        home.update(form.getName(), form.getHost(), form.getAddress(),
-                form.getDescription(), form.getGuest(), form.getRoom(), form.getBed(),
-                form.getBathroom(), form.getPrice(), form.getFacilities(), form.getPhoto());
+        System.out.println("홈 서비스!!");
+
+        List<Photo> photoList = fileHandler.parseFileInfo(files);
+
+        // 파일이 존재할 때에만 처리
+        if(!photoList.isEmpty()){
+            for(Photo photo : photoList)
+                // 파일을 DB에 저장
+                home.addPhoto(photoRepository.save(photo));
+        }
+
+
+        System.out.println("홈 업데이트!!");
+
+        home.update(new_home.getName(), new_home.getHost(), new_home.getAddress(),
+                new_home.getDescription(), new_home.getGuest(), new_home.getRoom(), new_home.getBed(),
+                new_home.getBathroom(), new_home.getPrice(), new_home.getType(),new_home.getFacilities());
     }
 
 }

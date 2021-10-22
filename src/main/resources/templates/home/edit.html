@@ -5,7 +5,7 @@
     <title>Airbnb | 숙소 수정</title>
 </head>
 <body>
-<form th:action="@{'/home/modify/' + ${home.id}}" method="post">
+<form th:action="@{'/home/modify/' + ${home.id}}" method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <td>숙소명</td>
@@ -40,12 +40,26 @@
             <td><input type="text" name="bathroom" th:value="${home.bathroom}"></td>
         </tr>
         <tr>
+            <td>비용</td>
+            <td><input type="text" name="price" th:value="${home.price}"></td>
+        </tr>
+        <tr>
+            <td>숙소유형</td>
+            <td><input type="text" name="type" th:value="${home.type}"></td>
+        </tr>
+        <tr>
             <td>편의시설</td>
             <td>
                 <label th:each="facilite : ${facilites}">
                     <input type="checkbox" name="facilities" th:field="*{home.facilities}" th:value="${facilite.id}">
                     <span th:text="${facilite.name}"></span>
                 </label>
+            </td>
+        </tr>
+        <tr>
+            <td>사진</td>
+            <td>
+                <input th:type="file" th:name="files" th:multiple="multiple">
             </td>
         </tr>
     </table>
