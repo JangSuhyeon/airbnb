@@ -73,8 +73,10 @@ public class HomeService {
 
         List<Photo> photoList = fileHandler.parseFileInfo(files);
 
+
         // 파일이 존재할 때에만 처리
         if(!photoList.isEmpty()){
+            home.getPhoto().clear();
             for(Photo photo : photoList)
                 // 파일을 DB에 저장
                 home.addPhoto(photoRepository.save(photo));

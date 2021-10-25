@@ -36,15 +36,15 @@ public class HomeController {
                 .facilities(homeFileVO.getFacilities())
                 .build();
 
-        homeService.save(requestDto, homeFileVO.getFiles());
-        return "redirect:/";
+        Long id = homeService.save(requestDto, homeFileVO.getFiles());
+        return "redirect:/home/detail/" + id;
     }
 
     // 숙소 삭제
-    @PostMapping("/home/delete/{id}")
+    @GetMapping("/home/delete/{id}")
     public String delete(@PathVariable long id) {
         homeService.delete(id);
-        return "redirect:/";
+        return "redirect:/home/list";
     }
 
     // 숙소 수정
@@ -68,7 +68,7 @@ public class HomeController {
         System.out.println("홈 컨트롤러!!");
 
         homeService.modify(id, requestDto, homeFileVO.getFiles());
-        return "redirect:/";
+        return "redirect:/home/detail/" + id;
     }
 
 }
