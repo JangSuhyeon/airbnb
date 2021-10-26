@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,6 +21,8 @@ public class HomeFileVO {
     private int bathroom; //욕실 수
     private int price; //비용
     private String type; //숙소유형
+    private String startDay; //예약 가능한 시작 날짜
+    private String endDay; //예약 가능한 마지막 날짜
     private List<Facilities> facilities = new ArrayList<>(); // 편의시설
     private List<MultipartFile> files; // 파일(사진)
 

@@ -87,7 +87,8 @@ public class HomeService {
 
         home.update(new_home.getName(), new_home.getHost(), new_home.getAddress(),
                 new_home.getDescription(), new_home.getGuest(), new_home.getRoom(), new_home.getBed(),
-                new_home.getBathroom(), new_home.getPrice(), new_home.getType(),new_home.getFacilities());
+                new_home.getBathroom(), new_home.getPrice(), new_home.getType(),
+                new_home.getStartDay(), new_home.getEndDay(),new_home.getFacilities());
     }
 
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // 숙소
@@ -48,6 +49,12 @@ public class Home extends BaseTimeEntity {
     @Column(nullable = false)
     private String type; //숙소 유형
 
+    @Column(nullable = false)
+    private Date startDay; // 예약 가능한 시작 날짜
+
+    @Column(nullable = false)
+    private Date endDay; // 예약 가능한 마지막 날짜
+
     // 편의시설
     @ManyToMany
     @JoinTable(name = "home_facilities", joinColumns = @JoinColumn(name = "home_id"), inverseJoinColumns = @JoinColumn(name = "facilities_id"))
@@ -59,7 +66,7 @@ public class Home extends BaseTimeEntity {
     private List<Photo> photo = new ArrayList<>();
 
     @Builder
-    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, List<Facilities> facilities) {
+    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, Date startDay, Date endDay, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -70,11 +77,13 @@ public class Home extends BaseTimeEntity {
         this.bathroom = bathroom;
         this.price = price;
         this.type = type;
+        this.startDay = startDay;
+        this.endDay = endDay;
         this.facilities = facilities;
     }
 
     // 숙소 수정 시 업데이트
-    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, List<Facilities> facilities) {
+    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, Date startDay, Date endDay, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -85,6 +94,8 @@ public class Home extends BaseTimeEntity {
         this.bathroom = bathroom;
         this.price = price;
         this.type = type;
+        this.startDay = startDay;
+        this.endDay = endDay;
         this.facilities = facilities;
     }
 

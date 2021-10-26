@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RequiredArgsConstructor
 @Controller
@@ -21,6 +23,9 @@ public class HomeController {
     // 숙소 저장
     @PostMapping("/home/save")
     public String save(HomeFileVO homeFileVO) throws Exception {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // String -> date 위함
+        System.out.println(homeFileVO.getStartDay());
 
         HomeSaveRequestDto requestDto = HomeSaveRequestDto.builder()
                 .name(homeFileVO.getName())
@@ -33,6 +38,8 @@ public class HomeController {
                 .bathroom(homeFileVO.getBathroom())
                 .price(homeFileVO.getPrice())
                 .type(homeFileVO.getType())
+                .startDay(new Date(dateFormat.parse(homeFileVO.getStartDay()).getTime()))
+                .endDay(new Date(dateFormat.parse(homeFileVO.getEndDay()).getTime()))
                 .facilities(homeFileVO.getFacilities())
                 .build();
 
@@ -52,6 +59,8 @@ public class HomeController {
     @PostMapping ("/home/modify/{id}")
     public String modifySave(@PathVariable long id, HomeFileVO homeFileVO) throws Exception {
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // String -> date 위함
+
         HomeModifyRequestDto requestDto = HomeModifyRequestDto.builder()
                 .name(homeFileVO.getName())
                 .host(homeFileVO.getHost())
@@ -63,6 +72,8 @@ public class HomeController {
                 .bathroom(homeFileVO.getBathroom())
                 .price(homeFileVO.getPrice())
                 .type(homeFileVO.getType())
+                .startDay(new Date(dateFormat.parse(homeFileVO.getStartDay()).getTime()))
+                .endDay(new Date(dateFormat.parse(homeFileVO.getEndDay()).getTime()))
                 .facilities(homeFileVO.getFacilities())
                 .build();
         System.out.println("홈 컨트롤러!!");

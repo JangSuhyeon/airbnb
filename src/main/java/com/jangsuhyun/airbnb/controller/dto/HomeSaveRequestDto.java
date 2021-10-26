@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //숙소를 저장할 때 사용 (사진 필드 없음)
@@ -27,10 +28,12 @@ public class HomeSaveRequestDto {
     private int bathroom; //욕실 수
     private int price; //비용
     private String type; //숙소유형
+    private Date startDay; //예약 가능한 시작 날짜
+    private Date endDay; //예약 가능한 마지막 날짜
     private List<Facilities> facilities = new ArrayList<>(); // 편의시설
 
     @Builder
-    public HomeSaveRequestDto(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, List<Facilities> facilities) {
+    public HomeSaveRequestDto(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, Date startDay, Date endDay, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -41,6 +44,8 @@ public class HomeSaveRequestDto {
         this.bathroom = bathroom;
         this.price = price;
         this.type = type;
+        this.startDay = startDay;
+        this.endDay = endDay;
         this.facilities = facilities;
     }
 
@@ -56,6 +61,8 @@ public class HomeSaveRequestDto {
                 .bathroom(bathroom)
                 .price(price)
                 .type(type)
+                .startDay(startDay)
+                .endDay(endDay)
                 .facilities(facilities)
                 .build();
     }

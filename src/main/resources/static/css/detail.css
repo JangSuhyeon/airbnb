@@ -42,8 +42,10 @@ header {
 .main > .info > .sub-info > p > .point {
     color:#222;
 }
-.main > .info > .sub-info > p > .review-cnt {
+.main > .info > .sub-info > p > .review-cnt,
+.main > .info > .sub-info > p > .review-cnt > span{
     color:#717171;
+    font-weight: bold;
 }
 .main > .info > .sub-info > p:last-child {
     text-decoration:underline;
@@ -172,6 +174,7 @@ header {
     border:1px solid #999;
     box-sizing: border-box;
     text-align:Center;
+    margin-bottom: 20px;
 }
 .btn-group > ul > li:first-child {
     margin-right:10px;
@@ -189,3 +192,95 @@ header {
 .btn-group > ul > li:last-child > a {
     color:#fff;
 }
+
+.btn-group > .book-container {
+    border:1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding:24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.btn-group > .book-container > .top {
+    margin-bottom:24px;
+}
+.btn-group > .book-container > .top > * {
+    display:inline-block;
+}
+.btn-group > .book-container > .top .price > span {
+    font-size:22px;
+    font-weight:bold;
+}
+.btn-group > .book-container > .top > p:nth-child(2) {
+    float:right;
+    font-size:14px;
+}
+.btn-group > .book-container > .top > p:nth-child(2) > * {
+    font-weight:bold;
+    color:#717171;
+}
+.btn-group > .book-container > .top > p:nth-child(2) > i {
+    font-size:13px;
+    color:#FF385C;
+}
+.btn-group > .book-container > .top > p:nth-child(2) > .point {
+    color:#222;
+}
+.btn-group > .book-container > .top > p:nth-child(2) > .review-cnt,
+.btn-group > .book-container > .top > p:nth-child(2) > .review-cnt > span {
+    color:#717171;
+    font-weight: bold;
+}
+.btn-group > .book-container > .date-container {
+    box-sizing: border-box;
+    border:1px solid #999;
+    border-radius: 10px;
+}
+.btn-group > .book-container > .date-container > .date-top::after {
+    display: block;
+    clear: both;
+    content:'';
+}
+.btn-group > .book-container > .date-container > .date-top > div {
+    position:relative;
+    float:left;
+    width:50%;
+    height:56px;
+    padding:26px 12px 10px;
+    box-sizing: border-box;
+}
+.btn-group > .book-container > .date-container > .guest-bot {
+    position:relative;
+    width:100%;
+    height:56px;
+    padding:26px 12px 10px;
+    box-sizing: border-box;
+    border-top:1px solid #999;
+}
+.btn-group > .book-container > .date-container > .date-top > div > p,
+.btn-group > .book-container > .date-container > .guest-bot > p {
+    position:absolute;
+    top:12px;
+    font-size:10px;
+    font-weight: bold;
+    color:rgb(34, 34, 34);
+}
+.btn-group > .book-container > .date-container > .date-top > div > .date,
+.btn-group > .book-container > .date-container > .guest-bot > .guest {
+    font-size:14px;
+}
+.btn-group > .book-container > .date-container > .date-top > .checkin {
+    border-right:1px solid #999;
+}
+.btn-group > .book-container > a {
+    display: inline-block;
+    width:100%;
+    border-radius: 5px;
+    background:#FF385C;
+    border-color: #FF385C;
+    font-weight:bold;
+    line-height:48px;
+    font-size:15px;
+    color:#fff;
+    text-align: center;
+    margin-top:16px;
+}
+

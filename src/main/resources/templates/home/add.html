@@ -48,6 +48,14 @@
                 <td><input type="text" name="type"></td>
             </tr>
             <tr>
+                <td>예약 시작 날짜</td>
+                <td><input type="date" name="startDay"></td>
+            </tr>
+            <tr>
+                <td>예약 마지막 날짜</td>
+                <td><input type="date" name="endDay"></td>
+            </tr>
+            <tr>
                 <td>편의시설</td>
                 <td>
                     <label th:each="facilite : ${facilites}">
