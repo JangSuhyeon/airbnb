@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/detail.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <!-- datePicker -->
+    <script src="/js/jquery-3.1.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
+    <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Air datepicker css -->
+    <script src="/js/datepicker.min.js"></script> <!-- Air datepicker js -->
+    <script src="/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
     <!-- 노토산스 -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- 스와이프 플러그인 -->
     <link rel="stylesheet" href="../css/swiper.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -71,11 +76,11 @@
                         <div class="date-top">
                             <div class="checkin">
                                 <p>체크인</p>
-                                <div class="date">2022.2.4</div>
+                                <input type="text" id="date_start" class="date"/>
                             </div>
                             <div class="checkout">
                                 <p>체크아웃</p>
-                                <div class="date">2022.2.4</div>
+                                <input type="text" id="date_end" class="date"/>
                             </div>
                         </div>
                         <div class="guest-bot">
@@ -89,3 +94,36 @@
         </div>
     </div>
 </body>
+<script>
+    var date = new Date();
+
+    var dp = $('#date_start').datepicker({
+        //년-월-일
+        startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+        language: 'ko',
+        autoClose: true,
+        //선택한 날짜를 가져옴
+        onSelect: function (date) {
+            var endNum = date;
+            //종료일 datepicker에 최소날짜를 방금 클릭한 날짜로 설정
+            $('#date_end').datepicker({
+                minDate: new Date(endNum),
+            });
+        }
+    }).data('datepicker');
+
+    var dp2 = $('#date_end').datepicker({
+        startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),  // 시간, 분은 00으로 초기 설정
+        language: 'ko',
+        autoClose: true,
+        //선택한 날짜를 가져옴
+        onSelect: function (date) {
+            var startNum = date;
+            $('#date_start').datepicker({
+                //시작일 datepicker에 최대날짜를 방금 클릭한 날짜로 설정
+                maxDate: new Date(startNum),
+            });
+        }
+    }).data('datepicker');
+</script>
+</html>

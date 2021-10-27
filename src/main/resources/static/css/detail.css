@@ -265,7 +265,10 @@ header {
 }
 .btn-group > .book-container > .date-container > .date-top > div > .date,
 .btn-group > .book-container > .date-container > .guest-bot > .guest {
+    border:0;
+    width:100%;
     font-size:14px;
+    color:#222;
 }
 .btn-group > .book-container > .date-container > .date-top > .checkin {
     border-right:1px solid #999;
