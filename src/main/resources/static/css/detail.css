@@ -3,6 +3,7 @@ header {
     top:0;
     left:0;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 0px 14px;
+    background: #fff;
 }
 .header-container {
     width:1120px;
@@ -285,5 +286,65 @@ header {
     color:#fff;
     text-align: center;
     margin-top:16px;
+}
+
+
+/* 게스트 인원 수 선택 */
+.btn-group > .book-container > .date-container > .guest-bot {
+    position:relative;
+}
+.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box {
+    display:none;
+    position:absolute;
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 6px, rgb(0 0 0 / 7%) 0px 0px 0px 1px !important;
+    padding: 16px;
+    box-sizing: border-box;
+    width:297px;
+    background-color: #fff;
+}
+.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table {
+    width:100%;
+}
+.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table tr > td {
+    padding:0 0 24px 0;
+    vertical-align: middle;
+}
+.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table td.title {
+    font-weight: bold;
+}
+.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table td.title > p {
+    font-size:14px;
+    padding-top:4px;
+}
+.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table td.cnt {
+    text-align:right;
+}
+.guest-bot > .guest-select-box > table td.cnt > span {
+    display: inline-block;
+    width:32px;
+    height:32px;
+    border-radius: 100%;
+    border:1px solid #999;
+    cursor: pointer;
+}
+.guest-bot > .guest-select-box > table td.cnt > span > i {
+    color:#999;
+    font-size:11px;
+    padding-top: 12px;
+    padding-right: 12px;
+}
+.guest-bot > .guest-select-box > table td.cnt > input {
+    width:32px;
+    border:none;
+    text-align:Center;
+    font-size:16px;
+    color:#444;
+}
+.guest-bot > .guest-select-box > a {
+    float: right;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
 }
 

@@ -85,7 +85,36 @@
                         </div>
                         <div class="guest-bot">
                             <p>인원</p>
-                            <div class="guest">게스트 1명</div>
+                            <input type="text" id="guest" class="guest" readonly/>
+                            <div class="guest-select-box">
+                                <table>
+                                    <tr>
+                                        <td class="title">성인</td>
+                                        <td class="cnt">
+                                            <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                            <input type="text" class="guest-cnt adult-cnt" value="1">
+                                            <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">어린이<p>만 2~12세</p></td>
+                                        <td class="cnt">
+                                            <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                            <input type="text" class="guest-cnt kid-cnt" value="0">
+                                            <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">유아<p>만 2세 미만</p></td>
+                                        <td class="cnt">
+                                            <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                            <input type="text" class="guest-cnt baby-cnt" value="0">
+                                            <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <a>닫기</a>
+                            </div>
                         </div>
                     </div>
                     <a href="">예약하기</a>
@@ -94,39 +123,5 @@
         </div>
     </div>
 </body>
-<script>
-
-    // 연결 달력
-    var date = new Date();
-
-    var dp = $('#date_start').datepicker({
-        //년-월-일
-        startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-        language: 'ko',
-        autoClose: true,
-        //선택한 날짜를 가져옴
-        onSelect: function (date) {
-            var endNum = date;
-            //종료일 datepicker에 최소날짜를 방금 클릭한 날짜로 설정
-            $('#date_end').datepicker({
-                minDate: new Date(endNum),
-            });
-        }
-    }).data('datepicker');
-
-    var dp2 = $('#date_end').datepicker({
-        startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),  // 시간, 분은 00으로 초기 설정
-        language: 'ko',
-        autoClose: true,
-        //선택한 날짜를 가져옴
-        onSelect: function (date) {
-            var startNum = date;
-            $('#date_start').datepicker({
-                //시작일 datepicker에 최대날짜를 방금 클릭한 날짜로 설정
-                maxDate: new Date(startNum),
-            });
-        }
-    }).data('datepicker');
-
-</script>
+<script src="/js/detail.js"></script>
 </html>
