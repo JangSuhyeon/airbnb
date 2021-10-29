@@ -1,0 +1,29 @@
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <!--configFragment 선언-->
+    <th:block th:fragment="configFragment">
+
+        <!-- 이 영역에 공통으로 사용할 css, js library를 선언한다. -->
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+        <!-- 노토산스 -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
+
+        <!-- Content Page의 CSS fragment 삽입 -->
+        <th:block layout:fragment="css">
+
+        </th:block>
+
+        <!-- Content Page의 script fragment 삽입 -->
+        <th:block layout:fragment="script">
+            <script src="js/jquery-3.1.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
+            <!-- Air datepicker css -->
+            <script src="js/datepicker.min.js"></script> <!-- Air datepicker js -->
+            <script src="js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+        </th:block>
+
+    </th:block>
+</html>
