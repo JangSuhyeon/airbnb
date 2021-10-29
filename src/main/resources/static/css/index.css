@@ -132,7 +132,7 @@ header.scroll .header-container .subMenu > li > a > i {
     background-size: cover;
     background-position: top center;
 }
-.page01 > .search-box {
+.page01 .search-box {
     position: absolute;
     top:80px;
     left:50%;
@@ -141,18 +141,18 @@ header.scroll .header-container .subMenu > li > a > i {
     background:#fff;
     border-radius: 36.7px;
 }
-.page01 > .search-box::after {
+.page01 .search-box::after {
     display: block;
     clear: both;
     content:'';
 }
-.page01 > .search-box > li {
+.page01 .search-box > li {
     position:relative;
     float: left;
     width:130px;
     padding:16px 24px 14px;
 }
-.page01 > .search-box > li::after {
+.page01 .search-box > li::after {
     position:absolute;
     top:14px;
     right:0;
@@ -162,33 +162,40 @@ header.scroll .header-container .subMenu > li > a > i {
     height:35.4px;
     background-color: #ddd;
 }
-.page01 > .search-box > li > p {
+.page01 .search-box > li > p {
     font-size:12px;
     font-weight: bold;
     padding-bottom:4px;
 }
-.page01 > .search-box > li > input {
+.page01 .search-box > li > input {
     width:100%;
     border:0;
     font-size:14px;
+    font-weight: bold;
 }
-.page01 > .search-box > li:last-child {
+.page01 .search-box > li > input::placeholder {
+    font-weight: normal;
+}
+.page01 .search-box > li:last-child {
     width:auto;
     padding:9px 9px 9px 24px;
 }
-.page01 > .search-box > li:nth-child(3)::after,
-.page01 > .search-box > li:last-child::after {
+.page01 .search-box > li:nth-child(3)::after,
+.page01 .search-box > li:last-child::after {
     display: none;
 }
-.page01 > .search-box > li:last-child > a {
+.page01 .search-box > li:last-child > button {
     width: 48px;
     height: 48px;
     border-radius: 50%;
     display: inline-block;
     background: #FF385C;
     text-align:center;
+    border:0;
+    outline: 0;
+    cursor:pointer;
 }
-.page01 > .search-box > li:last-child > a > i {
+.page01 .search-box > li:last-child > button > i {
     line-height: 48px;
     color:#fff;
 }

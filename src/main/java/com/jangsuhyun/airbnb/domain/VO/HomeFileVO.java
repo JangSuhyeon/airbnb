@@ -15,7 +15,7 @@ public class HomeFileVO {
     private String host; //호스트명
     private String address; //주소
     private String description; //기본설명
-    private String guest; //예약가능한 최대 인원
+    private int guest; //예약가능한 최대 인원
     private int room; //침실 수
     private int bed; //침대 수
     private int bathroom; //욕실 수

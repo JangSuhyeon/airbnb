@@ -3,6 +3,7 @@ package com.jangsuhyun.airbnb.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class Home extends BaseTimeEntity {
     private String description; //기본설명
 
     @Column(length = 100, nullable = false)
-    private String guest; //예약가능한 최대 인원
+    private int guest; //예약가능한 최대 인원
 
     @Column(nullable = false)
     private int room; //침실 수
@@ -66,7 +67,7 @@ public class Home extends BaseTimeEntity {
     private List<Photo> photo = new ArrayList<>();
 
     @Builder
-    public Home(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, Date startDay, Date endDay, List<Facilities> facilities) {
+    public Home(String name, String host, String address, String description, int guest, int room, int bed, int bathroom, int price, String type, Date startDay, Date endDay, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;
@@ -83,7 +84,7 @@ public class Home extends BaseTimeEntity {
     }
 
     // 숙소 수정 시 업데이트
-    public void update(String name, String host, String address, String description, String guest, int room, int bed, int bathroom, int price, String type, Date startDay, Date endDay, List<Facilities> facilities) {
+    public void update(String name, String host, String address, String description, int guest, int room, int bed, int bathroom, int price, String type, Date startDay, Date endDay, List<Facilities> facilities) {
         this.name = name;
         this.host = host;
         this.address = address;

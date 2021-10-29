@@ -3,6 +3,7 @@ package com.jangsuhyun.airbnb.service;
 import com.jangsuhyun.airbnb.controller.FileHandler;
 import com.jangsuhyun.airbnb.controller.dto.HomeModifyRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
+import com.jangsuhyun.airbnb.controller.dto.HomeSearchRequestDto;
 import com.jangsuhyun.airbnb.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -91,4 +92,11 @@ public class HomeService {
                 new_home.getStartDay(), new_home.getEndDay(),new_home.getFacilities());
     }
 
+    // 검색한 날짜의 숙소 찾기
+    public List<Home> findByDate(HomeSearchRequestDto requestDto) {
+
+        List<Home> homes = homeRepository.findByStartDayGreaterThanEqualAndEndDayLessThanEqualAndGuestGreaterThanEqual(requestDto.getStartday(), requestDto.getEndday(), requestDto.getGuestCnt());
+        return homes;
+
+    }
 }

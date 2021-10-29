@@ -1,11 +1,18 @@
 package com.jangsuhyun.airbnb.controller;
 
+import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
+import com.jangsuhyun.airbnb.controller.dto.HomeSearchRequestDto;
 import com.jangsuhyun.airbnb.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RequiredArgsConstructor
 @Controller
@@ -17,6 +24,20 @@ public class IndexController {
     @GetMapping("/")
     public String index() {
         return "index";
+    }
+
+    // 날짜로 숙소 검색
+    @GetMapping("/home/search")
+    public String search(HttpServletRequest request, Model model) throws ParseException {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // String -> date 위함
+        Date startday = new Date(dateFormat.parse(request.getParameter("startday")).getTime());
+        Date endday = new Date(dateFormat.parse(request.getParameter("endday")).getTime());
+        int guestCnt = Integer.parseInt(request.getParameter("guestCnt"));
+        HomeSearchRequestDto requestDto = new HomeSearchRequestDto(startday, endday, guestCnt);
+        model.addAttribute("homes", homeService.findByDate(requestDto));
+
+        return "home/list";
     }
 
     // 숙소 목록

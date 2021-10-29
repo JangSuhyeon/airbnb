@@ -6,9 +6,14 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/index.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <!-- datePicker -->
+    <script src="js/jquery-3.1.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
+    <link href="css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Air datepicker css -->
+    <script src="js/datepicker.min.js"></script> <!-- Air datepicker js -->
+    <script src="js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
     <!-- 노토산스 -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 <header>
@@ -27,25 +32,26 @@
 <div class="main">
 
     <!-- page01 -->
-    <!-- page01 -->
     <div class="page01">
-        <ul class="search-box">
-            <li>
-                <p class=title>체크인</p>
-                <input type="text" placeholder="날짜 입력">
-            </li>
-            <li>
-                <p class=title>체크아웃</p>
-                <input type="text" placeholder="날짜 입력">
-            </li>
-            <li>
-                <p class=title>인원</p>
-                <input type="text" placeholder="게스트 추가">
-            </li>
-            <li>
-                <a href=""><i class="fas fa-search"></i></a>
-            </li>
-        </ul>
+        <form action="/home/search" method="get">
+            <ul class="search-box">
+                <li>
+                    <p class=title>체크인</p>
+                    <input type="text" id="date_start" class="date" name="startday" placeholder="날짜 입력"/>
+                </li>
+                <li>
+                    <p class=title>체크아웃</p>
+                    <input type="text" id="date_end" class="date" name="endday" placeholder="날짜 입력"/>
+                </li>
+                <li>
+                    <p class=title>인원</p>
+                    <input type="text" name="guestCnt" placeholder="게스트 추가">
+                </li>
+                <li>
+                    <button><i class="fas fa-search"></i></button>
+                </li>
+            </ul>
+        </form>
     </div>
 
     <!-- page02 -->
@@ -86,7 +92,8 @@
                 $('.header-container .logo > img').attr("src", 'images/logo_wh.png');
             }
         });
-    })
+    });
 </script>
 </body>
+<script src="/js/airDaypicker.js"></script>
 </html>
