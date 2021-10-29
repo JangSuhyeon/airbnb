@@ -1,128 +1,98 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Aribnb</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/detail.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <!-- datePicker -->
-    <script src="/js/jquery-3.1.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
-    <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-    <!-- Air datepicker css -->
-    <script src="/js/datepicker.min.js"></script> <!-- Air datepicker js -->
-    <script src="/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
-    <!-- 노토산스 -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css">
-    <!-- 스와이프 플러그인 -->
-    <link rel="stylesheet" href="../css/swiper.min.css">
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo"><img src="/images/logo_pk.png"></a>
-            <ul class="mainMenu">
-                <li class="on"><a href="#none">숙소</a></li>
-                <li class="no"><a href="#none">체험</a></li>
-                <li class="no"><a href="#none">온라인 체험</a></li>
-            </ul>
-            <ul class="subMenu">
-                <li><a href="#none">호스트 되기</a></li>
-                <li><a href="#none"><i class="fas fa-globe"></i></a></li>
-                <li>
-                    <div class="hamburger"><i class="fas fa-bars"></i></div>
-                    <div class="person"><i class="fas fa-user-circle"></i></div>
-                </li>
-            </ul>
-        </div>
-    </header>
-    <div class="main">
-        <div class="info">
-             <h2 class="title" th:text="${home.name}"><!--숙소명--></h2>
-             <div class="sub-info">
-                 <p><i class="fas fa-star"></i>&nbsp;<span class="point">4.94</span>&nbsp;<span class="review-cnt">(후기 <span>65</span>개)</span>&nbsp;&nbsp;·&nbsp;&nbsp;</p>
-                 <p><i class="fas fa-medal"></i>&nbsp;&nbsp;슈퍼호스트&nbsp;&nbsp;·&nbsp;&nbsp;</p>
-                 <p><b th:text="${home.address}"><!--주소--></b></p>
-             </div>
-             <ul class="sns">
-                 <li><i class="fas fa-external-link-alt"></i><a>공유하기</a></li>
-                 <li><i class="far fa-heart"></i><a>저장</a></li>
-             </ul>
-             <div class="images">
-                <div th:each="photo : ${home.photo}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
-             </div>
-        </div>
-        <div class="detail-container">
-            <div class="detail">
-                <div class="title"> 
-                    <h2><span th:text="${home.host}"></span>님이 호스팅하는 <span th:text="${home.type}"></span></h2>
-                    <p>최대 인원 <span th:text="${home.guest}"></span>명 · 침실 <span th:text="${home.room}"></span>개 · 침대 <span th:text="${home.bed}"></span>개 · 욕실 <span th:text="${home.bathroom}"></span>개</p>
-                    <div class="profile-img"><img src="/images/profile.jpg"></div>
-                </div>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-list">
+
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/detail.css">
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="main">
+            <div class="info">
+                 <h2 class="title" th:text="${home.name}"><!--숙소명--></h2>
+                 <div class="sub-info">
+                     <p><i class="fas fa-star"></i>&nbsp;<span class="point">4.94</span>&nbsp;<span class="review-cnt">(후기 <span>65</span>개)</span>&nbsp;&nbsp;·&nbsp;&nbsp;</p>
+                     <p><i class="fas fa-medal"></i>&nbsp;&nbsp;슈퍼호스트&nbsp;&nbsp;·&nbsp;&nbsp;</p>
+                     <p><b th:text="${home.address}"><!--주소--></b></p>
+                 </div>
+                 <ul class="sns">
+                     <li><i class="fas fa-external-link-alt"></i><a>공유하기</a></li>
+                     <li><i class="far fa-heart"></i><a>저장</a></li>
+                 </ul>
+                 <div class="images">
+                    <div th:each="photo : ${home.photo}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
+                 </div>
             </div>
-            <div class="btn-group">
-                <ul>
-                    <li><a th:href="@{/home/edit/{id}(id = ${home.id})}">수정하기</a></li>
-                    <li><a th:href="@{/home/delete/{id}(id = ${home.id})}">삭제하기</a></li>
-                </ul>
-                <div class="book-container">
-                    <div class="top">
-                        <p class="price"><span>₩190,814</span> / 박</p>
-                        <p><i class="fas fa-star"></i>&nbsp;<span class="point">4.94</span>&nbsp;<span class="review-cnt">(후기 <span>65</span>개)</span></p>
+            <div class="detail-container">
+                <div class="detail">
+                    <div class="title">
+                        <h2><span th:text="${home.host}"></span>님이 호스팅하는 <span th:text="${home.type}"></span></h2>
+                        <p>최대 인원 <span th:text="${home.guest}"></span>명 · 침실 <span th:text="${home.room}"></span>개 · 침대 <span th:text="${home.bed}"></span>개 · 욕실 <span th:text="${home.bathroom}"></span>개</p>
+                        <div class="profile-img"><img src="/images/profile.jpg"></div>
                     </div>
-                    <div class="date-container">
-                        <div class="date-top">
-                            <div class="checkin">
-                                <p>체크인</p>
-                                <input type="text" id="date_start" class="date"/>
+                </div>
+                <div class="btn-group">
+                    <ul>
+                        <li><a th:href="@{/home/edit/{id}(id = ${home.id})}">수정하기</a></li>
+                        <li><a th:href="@{/home/delete/{id}(id = ${home.id})}">삭제하기</a></li>
+                    </ul>
+                    <div class="book-container">
+                        <div class="top">
+                            <p class="price"><span>₩190,814</span> / 박</p>
+                            <p><i class="fas fa-star"></i>&nbsp;<span class="point">4.94</span>&nbsp;<span class="review-cnt">(후기 <span>65</span>개)</span></p>
+                        </div>
+                        <div class="date-container">
+                            <div class="date-top">
+                                <div class="checkin">
+                                    <p>체크인</p>
+                                    <input type="text" id="date_start" class="date"/>
+                                </div>
+                                <div class="checkout">
+                                    <p>체크아웃</p>
+                                    <input type="text" id="date_end" class="date"/>
+                                </div>
                             </div>
-                            <div class="checkout">
-                                <p>체크아웃</p>
-                                <input type="text" id="date_end" class="date"/>
+                            <div class="guest-bot">
+                                <p>인원</p>
+                                <input type="text" id="guest" class="guest" readonly/>
+                                <div class="guest-select-box">
+                                    <table>
+                                        <tr>
+                                            <td class="title">성인</td>
+                                            <td class="cnt">
+                                                <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                                <input type="text" class="guest-cnt adult-cnt" value="1">
+                                                <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title">어린이<p>만 2~12세</p></td>
+                                            <td class="cnt">
+                                                <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                                <input type="text" class="guest-cnt kid-cnt" value="0">
+                                                <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title">유아<p>만 2세 미만</p></td>
+                                            <td class="cnt">
+                                                <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                                <input type="text" class="guest-cnt baby-cnt" value="0">
+                                                <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <a>닫기</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="guest-bot">
-                            <p>인원</p>
-                            <input type="text" id="guest" class="guest" readonly/>
-                            <div class="guest-select-box">
-                                <table>
-                                    <tr>
-                                        <td class="title">성인</td>
-                                        <td class="cnt">
-                                            <span class="cnt-minus"><i class="fas fa-minus"></i></span>
-                                            <input type="text" class="guest-cnt adult-cnt" value="1">
-                                            <span class="cnt-plus"><i class="fas fa-plus"></i></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="title">어린이<p>만 2~12세</p></td>
-                                        <td class="cnt">
-                                            <span class="cnt-minus"><i class="fas fa-minus"></i></span>
-                                            <input type="text" class="guest-cnt kid-cnt" value="0">
-                                            <span class="cnt-plus"><i class="fas fa-plus"></i></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="title">유아<p>만 2세 미만</p></td>
-                                        <td class="cnt">
-                                            <span class="cnt-minus"><i class="fas fa-minus"></i></span>
-                                            <input type="text" class="guest-cnt baby-cnt" value="0">
-                                            <span class="cnt-plus"><i class="fas fa-plus"></i></span>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <a>닫기</a>
-                            </div>
-                        </div>
+                        <a href="">예약하기</a>
                     </div>
-                    <a href="">예약하기</a>
                 </div>
             </div>
         </div>
+        <th:block layout:fragment="script">
+            <script src="/js/detail.js"></script>
+        </th:block>
     </div>
-</body>
-<script src="/js/detail.js"></script>
-<script src="/js/airDaypicker.js"></script>
 </html>

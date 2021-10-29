@@ -1,85 +1,72 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/layout-main">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-main">
 
-<!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
-    <link href="css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-</th:block>
+    <div layout:fragment="content">
 
+        <div class="main">
 
-<div layout:fragment="content">
+            <!-- page01 -->
+            <div class="page01">
+                <form action="/home/search" method="get">
+                    <ul class="search-box">
+                        <li>
+                            <p class=title>체크인</p>
+                            <input type="text" id="date_start" class="date" name="startday" placeholder="날짜 입력"/>
+                        </li>
+                        <li>
+                            <p class=title>체크아웃</p>
+                            <input type="text" id="date_end" class="date" name="endday" placeholder="날짜 입력"/>
+                        </li>
+                        <li>
+                            <p class=title>인원</p>
+                            <input type="text" name="guestCnt" placeholder="게스트 추가">
+                        </li>
+                        <li>
+                            <button><i class="fas fa-search"></i></button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
 
-    <div class="main">
-
-        <!-- page01 -->
-        <div class="page01">
-            <form action="/home/search" method="get">
-                <ul class="search-box">
-                    <li>
-                        <p class=title>체크인</p>
-                        <input type="text" id="date_start" class="date" name="startday" placeholder="날짜 입력"/>
-                    </li>
-                    <li>
-                        <p class=title>체크아웃</p>
-                        <input type="text" id="date_end" class="date" name="endday" placeholder="날짜 입력"/>
-                    </li>
-                    <li>
-                        <p class=title>인원</p>
-                        <input type="text" name="guestCnt" placeholder="게스트 추가">
-                    </li>
-                    <li>
-                        <button><i class="fas fa-search"></i></button>
-                    </li>
-                </ul>
-            </form>
-        </div>
-
-        <!-- page02 -->
-        <div class="page02 page">
-            <h2 class="title">어디에서나, 여행은 살아보는 거야!</h2>
-            <div class="page-container">
-                <ul class="list">
-                    <li th:onclick="'location.href=\''+ @{/home/list} + '\''">
-                        <img src="images/page02_1.jpg">
-                        <p>자연생활을 만끽할 수 있는 숙소</p>
-                    </li>
-                    <li>
-                        <img src="images/page02_2.jpg">
-                        <p>독특한 공간</p>
-                    </li>
-                    <li>
-                        <img src="images/page02_3.jpg">
-                        <p>집 전체</p>
-                    </li>
-                    <li>
-                        <img src="images/page02_4.jpg">
-                        <p>반려동물 동반 가능</p>
-                    </li>
-                </ul>
+            <!-- page02 -->
+            <div class="page02 page">
+                <h2 class="title">어디에서나, 여행은 살아보는 거야!</h2>
+                <div class="page-container">
+                    <ul class="list">
+                        <li th:onclick="'location.href=\''+ @{/home/list} + '\''">
+                            <img src="images/page02_1.jpg">
+                            <p>자연생활을 만끽할 수 있는 숙소</p>
+                        </li>
+                        <li>
+                            <img src="images/page02_2.jpg">
+                            <p>독특한 공간</p>
+                        </li>
+                        <li>
+                            <img src="images/page02_3.jpg">
+                            <p>집 전체</p>
+                        </li>
+                        <li>
+                            <img src="images/page02_4.jpg">
+                            <p>반려동물 동반 가능</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-        $(document).ready(function () {
+        <script>
+            $(document).ready(function () {
 
-            var bodyOffset = jQuery('body').offset();
-            $(window).scroll(function() { // 윈도우 스크롤 이벤트 시
-                if ($(document).scrollTop() > bodyOffset.top) {
-                    $('header').addClass('scroll');
-                    $('.header-container .logo > img').attr("src", 'images/logo_pk.png');
-                } else {
-                    $('header').removeClass('scroll');
-                    $('.header-container .logo > img').attr("src", 'images/logo_wh.png');
-                }
+                var bodyOffset = jQuery('body').offset();
+                $(window).scroll(function() { // 윈도우 스크롤 이벤트 시
+                    if ($(document).scrollTop() > bodyOffset.top) {
+                        $('header').addClass('scroll');
+                        $('.header-container .logo > img').attr("src", 'images/logo_pk.png');
+                    } else {
+                        $('header').removeClass('scroll');
+                        $('.header-container .logo > img').attr("src", 'images/logo_wh.png');
+                    }
+                });
             });
-        });
-    </script>
-
-    <!-- index.html 고유 스크립트 추가 -->
-    <th:block layout:fragment="script">
-        <script src="/js/airDaypicker.js"></script>
-    </th:block>
-</div>
+        </script>
+    </div>
+</html>
