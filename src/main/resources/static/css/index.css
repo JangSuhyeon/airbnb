@@ -103,10 +103,28 @@ header {
     color:#717171;
 }
 .header-container .subMenu > li:last-child .person {
+    position:relative;
     font-size:28px;
 }
 .header-container .subMenu > li:last-child .person > i {
     color:#717171;
+}
+.header-container .subMenu > li:last-child .person > .login-box {
+    display: none;
+    position:absolute;
+    top:53px;
+    right:-8px;
+    width:100px;
+    padding:10px 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.header-container .subMenu > li:last-child .person > .login-box li:first-child a {
+    font-weight:bold;
+}
+.header-container .subMenu > li:last-child .person > .login-box a {
+    font-size:14px;
 }
 
 /* header-스크롤 */
@@ -119,6 +137,62 @@ header.scroll .header-container .subMenu > li > a {
 }
 header.scroll .header-container .subMenu > li > a > i {
     color:#222;
+}
+
+/* 로그인 모달 창 */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px !important;
+}
+.modal-content > h2 {
+    padding:0 24px;
+    text-align:Center;
+    border-bottom:1px solid #ddd;
+    font-weight: bold;
+    line-height: 64px;
+    position:relative;
+}
+.modal-content > h2 > span {
+    position:absolute;
+    left:24px;
+}
+.modal-content > div {
+    padding:24px;
+}
+.modal-content > div li {
+    position: relative;
+    padding:10px 12px;
+    border-radius: 8px;
+    line-height: 24px;
+    color:rgb(72, 72, 72);
+    font-size: 14px;
+    font-weight: bold;
+    text-align:center;
+    border:2px solid rgb(176, 176, 176);
+    cursor: pointer;
+}
+.modal-content > div li:hover {
+    border-color: #555;
+}
+.modal-content > div li > i {
+    float:left;
+    line-height: 24px;
+    color: #EA4335;
 }
 
 

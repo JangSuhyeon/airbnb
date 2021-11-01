@@ -9,9 +9,37 @@
                 <li><a href="#none"><i class="fas fa-globe"></i></a></li>
                 <li>
                     <div class="hamburger"><i class="fas fa-bars"></i></div>
-                    <div class="person"><i class="fas fa-user-circle"></i></div>
+                    <div class="person">
+                        <i class="fas fa-user-circle"></i>
+                        <div class="login-box">
+                            <ul>
+                                <li><a onclick="showLogin();">회원가입</a></li>
+                                <li><a href="">로그인</a></li>
+                                <li><a href="">숙소 호스트 되기</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
             </ul>
+        </div>
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h2><span onClick="close_pop();"><i class="fas fa-times"></i></span>로그인 또는 회원가입</h2>
+                <div>
+                    <ul>
+                        <li>
+                            <i class="fab fa-google"></i>구글로 로그인하기
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         </div>
     </header>
 
