@@ -29,6 +29,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.3' // 타임리프 레이아웃
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // 소셜 로그인 기능
 }
 
 test {
