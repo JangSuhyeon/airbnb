@@ -1,5 +1,7 @@
 package com.jangsuhyun.airbnb.controller;
 
+import com.jangsuhyun.airbnb.config.auth.LoginUser;
+import com.jangsuhyun.airbnb.config.auth.dto.SessionUser;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSearchRequestDto;
 import com.jangsuhyun.airbnb.service.HomeService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,10 +22,16 @@ import java.util.Date;
 public class IndexController {
 
     private final HomeService homeService;
+    private final HttpSession httpSession;
 
     // Main
     @GetMapping("/")
-    public String index() {
+    public String index(Model model, @LoginUser SessionUser user) {
+
+        if (user != null) {
+            model.addAttribute("userName",user.getName());
+        }
+
         return "index";
     }
 

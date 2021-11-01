@@ -1,4 +1,4 @@
-<html lagn="ko" xmlns:th="http://www.thymeleaf.org">
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <!--headerFragment 선언-->
     <header th:fragment="headerFragment">
@@ -13,14 +13,33 @@
                         <i class="fas fa-user-circle"></i>
                         <div class="login-box">
                             <ul>
-                                <li><a href="">회원가입</a></li>
-                                <li><a href="">로그인</a></li>
+                                <li sec:authorize="isAnonymous()"><a onclick="showLogin();">회원가입</a></li>
+                                <li sec:authorize="isAnonymous()"><a onclick="showLogin();">로그인</a></li>
+                                <li sec:authorize="isAuthenticated()"><a th:href="@{/mypage}" th:text="${userName}"></a></li>
+                                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></li>
                                 <li><a href="">숙소 호스트 되기</a></li>
                             </ul>
                         </div>
                     </div>
                 </li>
             </ul>
+        </div>
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h2><span onClick="close_pop();"><i class="fas fa-times"></i></span>로그인 또는 회원가입</h2>
+                <div>
+                    <ul>
+                        <li th:onclick="'location.href=\''+ @{/oauth2/authorization/google} + '\''">
+                            <i class="fab fa-google"></i>구글로 로그인하기
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </header>
 
