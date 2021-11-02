@@ -29,6 +29,7 @@ public class IndexController {
     public String index(Model model, @LoginUser SessionUser user) {
 
         if (user != null) {
+            System.out.println(user.getName());
             model.addAttribute("userName",user.getName());
         }
 

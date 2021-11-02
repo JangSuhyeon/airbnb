@@ -70,6 +70,7 @@ header {
     color:#fff;
     font-size:14px;
     font-weight: 600;
+    cursor: pointer;
 }
 .header-container .subMenu > li > a:hover {
     color:rgba(255, 255, 255, .8)

@@ -1,5 +1,6 @@
 package com.jangsuhyun.airbnb.config.auth;
 
+import com.jangsuhyun.airbnb.config.auth.dto.SessionUser;
 import com.jangsuhyun.airbnb.domain.user.User;
 import com.jangsuhyun.airbnb.domain.user.UserRepository;
 import com.jangsuhyun.airbnb.config.auth.dto.OAuthAttributes;
@@ -36,8 +37,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
         User user = saveOrUpdate(attributes);
+        httpSession.setAttribute("user", new SessionUser(user));
 
-        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
+        return new DefaultOAuth2User(
+                Collections.singleton(new
+                        SimpleGrantedAuthority(user.getRoleKey())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
     }
@@ -47,10 +51,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
 
-        //회원가입을 해야 Cart Entity에 userId를 넣을 수 있어서 먼저 User save
-        User returnUser = userRepository.save(user);
-
-        return returnUser;
+        return userRepository.save(user);
     }
 
     public User findById(Long id) {

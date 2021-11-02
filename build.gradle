@@ -32,6 +32,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // 소셜 로그인 기능
 	implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.5.1' // 로그인 여부에 따라 노출
 	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
+	implementation 'org.springframework.session:spring-session-jdbc' // 데이터베이스를 세션 저장소로 사용하기 위함
 }
 
 test {
