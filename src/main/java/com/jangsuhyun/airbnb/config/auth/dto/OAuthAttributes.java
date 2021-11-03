@@ -42,15 +42,6 @@ public class OAuthAttributes {
                 .build();
     }
 
-    public User toEntity() {
-        return User.builder()
-                .name(name)
-                .email(email)
-                .picture(picture)
-                .role(Role.GUEST)
-                .build();
-    }
-
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String,Object> response = (Map<String, Object>) attributes.get("response");
 
@@ -60,6 +51,15 @@ public class OAuthAttributes {
                 .picture((String) response.get("profile_image"))
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
+                .build();
+    }
+
+    public User toEntity() {
+        return User.builder()
+                .name(name)
+                .email(email)
+                .picture(picture)
+                .role(Role.GUEST)
                 .build();
     }
 }

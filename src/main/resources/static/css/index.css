@@ -187,13 +187,15 @@ header.scroll .header-container .subMenu > li > a > i {
     border:2px solid rgb(176, 176, 176);
     cursor: pointer;
 }
+.modal-content > div li:nth-child(n+2) {
+    margin-top:20px;
+}
 .modal-content > div li:hover {
     border-color: #555;
 }
-.modal-content > div li > i {
+.modal-content > div li > img {
     float:left;
-    line-height: 24px;
-    color: #EA4335;
+    height: 24px;
 }
 
 
