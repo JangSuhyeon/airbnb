@@ -29,3 +29,14 @@ var dp2 = $('#date_end').datepicker({
         });
     }
 }).data('datepicker');
+
+// 날짜 범위 계산
+$('#date_end').focus(function () {
+    var start = $('#date_start').datepicker('getDate');
+    var end = $('#date_end').datepicker('getDate');
+    if (start || end) {
+        var days = (end - start) / 1000 / 60 / 60 / 24;
+        $('#num_nights').val(days);
+        console.log(days);
+    }
+});

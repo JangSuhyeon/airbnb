@@ -348,3 +348,21 @@ header {
     cursor: pointer;
 }
 
+
+
+/*  total-container */
+.total-container {
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px solid rgb(221, 221, 221);
+    font-weight: bold;
+}
+.total-container > p {
+    float: right;
+    font-weight: bold;
+}
+.total-container > p > span {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
