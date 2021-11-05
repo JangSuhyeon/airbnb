@@ -210,23 +210,23 @@ header {
     font-size:22px;
     font-weight:bold;
 }
-.btn-group > .book-container > .top > p:nth-child(2) {
+.btn-group > .book-container > .top > p:last-child {
     float:right;
     font-size:14px;
 }
-.btn-group > .book-container > .top > p:nth-child(2) > * {
+.btn-group > .book-container > .top > p:last-child > * {
     font-weight:bold;
     color:#717171;
 }
-.btn-group > .book-container > .top > p:nth-child(2) > i {
+.btn-group > .book-container > .top > p:last-child > i {
     font-size:13px;
     color:#FF385C;
 }
-.btn-group > .book-container > .top > p:nth-child(2) > .point {
+.btn-group > .book-container > .top > p:last-child > .point {
     color:#222;
 }
-.btn-group > .book-container > .top > p:nth-child(2) > .review-cnt,
-.btn-group > .book-container > .top > p:nth-child(2) > .review-cnt > span {
+.btn-group > .book-container > .top > p:last-child > .review-cnt,
+.btn-group > .book-container > .top > p:last-child > .review-cnt > span {
     color:#717171;
     font-weight: bold;
 }

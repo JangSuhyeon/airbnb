@@ -38,7 +38,8 @@
                     </ul>
                     <div class="book-container">
                         <div class="top">
-                            <p class="price"><span>₩190,814</span> / 박</p>
+                            <p class="price"><span>₩</span><span th:text="${#numbers.formatDecimal(home.price, 0, 'COMMA', 0, 'POINT')}"></span> / 박</p>
+                            <input th:type="hidden" th:value="${home.price}" class="hidden-price">
                             <p><i class="fas fa-star"></i>&nbsp;<span class="point">4.94</span>&nbsp;<span class="review-cnt">(후기 <span>65</span>개)</span></p>
                         </div>
                         <div class="date-container">
@@ -86,10 +87,10 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="">예약하기</a>
+                        <a >예약하기</a>
                         <div class="total-container">
                             총 합계
-                            <p>₩<span>1,590,570</span></p>
+                            <p>₩<span id="num_nights">0</span></p>
                         </div>
                     </div>
                 </div>
