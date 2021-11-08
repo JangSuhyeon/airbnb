@@ -4,6 +4,7 @@ import com.jangsuhyun.airbnb.config.auth.LoginUser;
 import com.jangsuhyun.airbnb.config.auth.dto.SessionUser;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSearchRequestDto;
+import com.jangsuhyun.airbnb.domain.BookedHome;
 import com.jangsuhyun.airbnb.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,6 @@ import java.util.Date;
 public class IndexController {
 
     private final HomeService homeService;
-    private final HttpSession httpSession;
 
     // Main
     @GetMapping("/")
@@ -90,6 +90,30 @@ public class IndexController {
         model.addAttribute("facilites",homeService.findAllFacilities());
 
         return "home/edit";
+    }
+
+    // 여행 페이지로 이동
+    @GetMapping("/mypage/travel")
+    public String goToTravel(@LoginUser SessionUser user, Model model){
+
+        model.addAttribute("bookedHome", homeService.findHomeByUserId(user.getId()));
+
+        return "mypage/travel";
+    }
+
+    // 숙소를 예약했을 때
+    @GetMapping("/book/{id}")
+    public String bookComplete(@PathVariable Long id, @LoginUser SessionUser user, Model model) {
+
+        BookedHome bookedHome = BookedHome.builder()
+                .userId(user.getId())
+                .status(1)
+                .home(homeService.findById(id))
+                .build();
+
+        homeService.addBookedHome(bookedHome);
+
+        return "redirect:/mypage/travel";
     }
 
 }

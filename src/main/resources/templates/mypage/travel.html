@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-list">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/travel.css">
+</th:block>
+
+<div layout:fragment="content">
+    <div class="main">
+        <h2 class="title">여행</h2>
+        <div class="tab">
+            <ul class="tabnav">
+                <li><a href="#tab01">예정된 예약</a></li>
+                <li><a href="#tab02">이전 예약</a></li>
+                <li><a href="#tab02">취소됨</a></li>
+            </ul>
+            <div class="tabcontent">
+                <div id="tab01" class="tab-list">
+                    <ul>
+                        <li th:each="home : ${bookedHome}">
+                            <div class="image">
+                                <div th:utext='${"<img src=" + home.getHome().getPhoto().get(1).getFilePath() + ">"}'></div>
+                                <div class="gra-box"></div>
+                            </div>
+                            <div class="info">
+                                <span>2021년 6월 24일 - 2021년 6월 25일</span>
+                                <p th:text="${home.getHome().getAddress()}">경주시</p>
+                            </div>
+                            <div class="detail">
+                                <div class="image" th:utext='${"<img src=" + home.getHome().getPhoto().get(1).getFilePath() + ">"}'></div>
+                                <p><span th:text="${home.getHome().getName()}">시에나</span><i class="fas fa-chevron-right"></i></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="tab02">tab2 content</div>
+                <div id="tab03">tab3 content</div>
+            </div>
+        </div>
+    </div>
+    <th:block layout:fragment="script">
+        <script src="/js/travel.js"></script>
+    </th:block>
+</div>
+</html>

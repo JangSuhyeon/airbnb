@@ -1,5 +1,7 @@
 package com.jangsuhyun.airbnb.service;
 
+import com.jangsuhyun.airbnb.config.auth.LoginUser;
+import com.jangsuhyun.airbnb.config.auth.dto.SessionUser;
 import com.jangsuhyun.airbnb.controller.FileHandler;
 import com.jangsuhyun.airbnb.controller.dto.HomeModifyRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
@@ -8,6 +10,8 @@ import com.jangsuhyun.airbnb.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
@@ -21,6 +25,7 @@ public class HomeService {
     private final FacilitiesRepository facilitiesRepository;
     private final FileHandler fileHandler;
     private final PhotoRepository photoRepository;
+    private final BookedHomeRepository bookedHomeRepository;
 
     // 숙소 전체 불러오기
     public List<Home> findAll() {
@@ -98,5 +103,18 @@ public class HomeService {
         List<Home> homes = homeRepository.findByStartDayGreaterThanEqualAndEndDayLessThanEqualAndGuestGreaterThanEqual(requestDto.getStartday(), requestDto.getEndday(), requestDto.getGuestCnt());
         return homes;
 
+    }
+
+    // 숙소 예약하기
+    @Transactional
+    public void addBookedHome(BookedHome bookedHome) {
+
+        bookedHomeRepository.save(bookedHome);
+
+    }
+
+    // user id로 현재 예약중인 숙소 찾기
+    public List<BookedHome> findHomeByUserId(Long user_id) {
+        return bookedHomeRepository.findByUserIdAAndStatus(user_id, 1); // status가 1인 숙소만 조회
     }
 }
