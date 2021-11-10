@@ -42,52 +42,58 @@
                             <input th:type="hidden" th:value="${home.price}" class="hidden-price">
                             <p><i class="fas fa-star"></i>&nbsp;<span class="point">4.94</span>&nbsp;<span class="review-cnt">(후기 <span>65</span>개)</span></p>
                         </div>
-                        <div class="date-container">
-                            <div class="date-top">
-                                <div class="checkin">
-                                    <p>체크인</p>
-                                    <input type="text" id="date_start" class="date"/>
+
+                        <!-- BookedHome 객체로 보내기 위하여 -->
+                        <form th:action="@{/book/save}" method="post">
+                            <div class="date-container">
+                                <div class="date-top">
+                                    <div class="checkin">
+                                        <p>체크인</p>
+                                        <input type="text" id="date_start" name="checkin" class="date"/>
+                                    </div>
+                                    <div class="checkout">
+                                        <p>체크아웃</p>
+                                        <input type="text" id="date_end" name="checkout" class="date"/>
+                                    </div>
                                 </div>
-                                <div class="checkout">
-                                    <p>체크아웃</p>
-                                    <input type="text" id="date_end" class="date"/>
+                                <div class="guest-bot">
+                                    <p>인원</p>
+                                    <input type="text" id="guest" class="guest" readonly/>
+                                    <div class="guest-select-box">
+                                        <table>
+                                            <tr>
+                                                <td class="title">성인</td>
+                                                <td class="cnt">
+                                                    <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                                    <input type="text" class="guest-cnt adult-cnt" value="1">
+                                                    <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">어린이<p>만 2~12세</p></td>
+                                                <td class="cnt">
+                                                    <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                                    <input type="text" class="guest-cnt kid-cnt" value="0">
+                                                    <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">유아<p>만 2세 미만</p></td>
+                                                <td class="cnt">
+                                                    <span class="cnt-minus"><i class="fas fa-minus"></i></span>
+                                                    <input type="text" class="guest-cnt baby-cnt" value="0">
+                                                    <span class="cnt-plus"><i class="fas fa-plus"></i></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <a>닫기</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="guest-bot">
-                                <p>인원</p>
-                                <input type="text" id="guest" class="guest" readonly/>
-                                <div class="guest-select-box">
-                                    <table>
-                                        <tr>
-                                            <td class="title">성인</td>
-                                            <td class="cnt">
-                                                <span class="cnt-minus"><i class="fas fa-minus"></i></span>
-                                                <input type="text" class="guest-cnt adult-cnt" value="1">
-                                                <span class="cnt-plus"><i class="fas fa-plus"></i></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">어린이<p>만 2~12세</p></td>
-                                            <td class="cnt">
-                                                <span class="cnt-minus"><i class="fas fa-minus"></i></span>
-                                                <input type="text" class="guest-cnt kid-cnt" value="0">
-                                                <span class="cnt-plus"><i class="fas fa-plus"></i></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">유아<p>만 2세 미만</p></td>
-                                            <td class="cnt">
-                                                <span class="cnt-minus"><i class="fas fa-minus"></i></span>
-                                                <input type="text" class="guest-cnt baby-cnt" value="0">
-                                                <span class="cnt-plus"><i class="fas fa-plus"></i></span>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <a>닫기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <a th:href="@{/book/{id}(id = ${home.id})}">예약하기</a>
+                            <input type="hidden" th:name="id" th:value="${home.id}">
+                            <button type="submit">예약하기</button>
+                        </form>
+
                         <div class="total-container">
                             총 합계
                             <p>₩<span id="num_nights">0</span></p>

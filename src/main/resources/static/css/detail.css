@@ -230,17 +230,17 @@ header {
     color:#717171;
     font-weight: bold;
 }
-.btn-group > .book-container > .date-container {
+.btn-group > .book-container > form > .date-container {
     box-sizing: border-box;
     border:1px solid #999;
     border-radius: 10px;
 }
-.btn-group > .book-container > .date-container > .date-top::after {
+.btn-group > .book-container > form > .date-container > .date-top::after {
     display: block;
     clear: both;
     content:'';
 }
-.btn-group > .book-container > .date-container > .date-top > div {
+.btn-group > .book-container > form > .date-container > .date-top > div {
     position:relative;
     float:left;
     width:50%;
@@ -248,7 +248,7 @@ header {
     padding:26px 12px 10px;
     box-sizing: border-box;
 }
-.btn-group > .book-container > .date-container > .guest-bot {
+.btn-group > .book-container > form > .date-container > .guest-bot {
     position:relative;
     width:100%;
     height:56px;
@@ -256,25 +256,25 @@ header {
     box-sizing: border-box;
     border-top:1px solid #999;
 }
-.btn-group > .book-container > .date-container > .date-top > div > p,
-.btn-group > .book-container > .date-container > .guest-bot > p {
+.btn-group > .book-container > form > .date-container > .date-top > div > p,
+.btn-group > .book-container > form > .date-container > .guest-bot > p {
     position:absolute;
     top:12px;
     font-size:10px;
     font-weight: bold;
     color:rgb(34, 34, 34);
 }
-.btn-group > .book-container > .date-container > .date-top > div > .date,
-.btn-group > .book-container > .date-container > .guest-bot > .guest {
+.btn-group > .book-container > form > .date-container > .date-top > div > .date,
+.btn-group > .book-container > form > .date-container > .guest-bot > .guest {
     border:0;
     width:100%;
     font-size:14px;
     color:#222;
 }
-.btn-group > .book-container > .date-container > .date-top > .checkin {
+.btn-group > .book-container > form > .date-container > .date-top > .checkin {
     border-right:1px solid #999;
 }
-.btn-group > .book-container > a {
+.btn-group > .book-container > form > button {
     display: inline-block;
     width:100%;
     border-radius: 5px;
@@ -290,10 +290,10 @@ header {
 
 
 /* 게스트 인원 수 선택 */
-.btn-group > .book-container > .date-container > .guest-bot {
+.btn-group > .book-container > form > .date-container > .guest-bot {
     position:relative;
 }
-.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box {
+.btn-group > .book-container > form > .date-container > .guest-bot > .guest-select-box {
     display:none;
     position:absolute;
     border-radius: 4px;
@@ -303,21 +303,21 @@ header {
     width:297px;
     background-color: #fff;
 }
-.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table {
+.btn-group > .book-container > form > .date-container > .guest-bot > .guest-select-box > table {
     width:100%;
 }
-.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table tr > td {
+.btn-group > .book-container > form > .date-container > .guest-bot > .guest-select-box > table tr > td {
     padding:0 0 24px 0;
     vertical-align: middle;
 }
-.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table td.title {
+.btn-group > .book-container > form > .date-container > .guest-bot > .guest-select-box > table td.title {
     font-weight: bold;
 }
-.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table td.title > p {
+.btn-group > .book-container > form > .date-container > .guest-bot > .guest-select-box > table td.title > p {
     font-size:14px;
     padding-top:4px;
 }
-.btn-group > .book-container > .date-container > .guest-bot > .guest-select-box > table td.cnt {
+.btn-group > .book-container > form > .date-container > .guest-bot > .guest-select-box > table td.cnt {
     text-align:right;
 }
 .guest-bot > .guest-select-box > table td.cnt > span {

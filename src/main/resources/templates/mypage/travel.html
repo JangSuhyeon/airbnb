@@ -18,17 +18,17 @@
             <div class="tabcontent">
                 <div id="tab01" class="tab-list">
                     <ul>
-                        <li th:each="home : ${bookedHome}">
+                        <li th:each="home : ${bookedHome}" th:onclick="'location.href=\''+ @{/mypage/travel/{id}(id = ${home.getHome().id})} + '\''">
                             <div class="image">
-                                <div th:utext='${"<img src=" + home.getHome().getPhoto().get(1).getFilePath() + ">"}'></div>
+                                <div class="img" th:each="photo : ${home.getHome().getPhoto()}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
                                 <div class="gra-box"></div>
                             </div>
                             <div class="info">
-                                <span>2021년 6월 24일 - 2021년 6월 25일</span>
+                                <span><span th:text="${home.getCheckin()}">2021년 6월 24일</span> - <span th:text="${home.getCheckout()}">2021년 6월 25일</span></span>
                                 <p th:text="${home.getHome().getAddress()}">경주시</p>
                             </div>
                             <div class="detail">
-                                <div class="image" th:utext='${"<img src=" + home.getHome().getPhoto().get(1).getFilePath() + ">"}'></div>
+                                <div class="image" th:each="photo : ${home.getHome().getPhoto()}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
                                 <p><span th:text="${home.getHome().getName()}">시에나</span><i class="fas fa-chevron-right"></i></p>
                             </div>
                         </li>

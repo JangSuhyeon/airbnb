@@ -2,6 +2,7 @@ package com.jangsuhyun.airbnb.controller;
 
 import com.jangsuhyun.airbnb.config.auth.LoginUser;
 import com.jangsuhyun.airbnb.config.auth.dto.SessionUser;
+import com.jangsuhyun.airbnb.controller.dto.BookedHomeSaveRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSaveRequestDto;
 import com.jangsuhyun.airbnb.controller.dto.HomeSearchRequestDto;
 import com.jangsuhyun.airbnb.domain.BookedHome;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -102,18 +105,34 @@ public class IndexController {
     }
 
     // 숙소를 예약했을 때
-    @GetMapping("/book/{id}")
-    public String bookComplete(@PathVariable Long id, @LoginUser SessionUser user, Model model) {
+    @PostMapping("/book/save")
+    public String bookComplete(BookedHomeSaveRequestDto requestDto, @LoginUser SessionUser user)
+            throws ParseException {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         BookedHome bookedHome = BookedHome.builder()
-                .userId(user.getId())
+                .userid(user.getId())
                 .status(1)
-                .home(homeService.findById(id))
+                .home(homeService.findById(requestDto.getId()))
+                .checkin(new Date(dateFormat.parse(requestDto.getCheckin()).getTime()))
+                .checkout(new Date(dateFormat.parse(requestDto.getCheckout()).getTime()))
                 .build();
 
         homeService.addBookedHome(bookedHome);
 
         return "redirect:/mypage/travel";
+    }
+
+    // 예약 상세 페이지로 이동
+    @GetMapping("/mypage/travel/{id}")
+    public String goToTravelDetail(@PathVariable Long id, Model model){
+
+        // 로그인 한 유저와 동일한지 체크 필요
+
+        model.addAttribute("home", homeService.findById(id));
+
+        return "mypage/travel_detail";
     }
 
 }

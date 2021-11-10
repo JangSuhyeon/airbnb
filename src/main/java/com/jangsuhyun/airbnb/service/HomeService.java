@@ -114,7 +114,7 @@ public class HomeService {
     }
 
     // user id로 현재 예약중인 숙소 찾기
-    public List<BookedHome> findHomeByUserId(Long user_id) {
-        return bookedHomeRepository.findByUserIdAAndStatus(user_id, 1); // status가 1인 숙소만 조회
+    public List<BookedHome> findHomeByUserId(Long userId) {
+        return bookedHomeRepository.findAllByUseridAndStatus(userId, 1); // status가 1인 숙소만 조회
     }
 }

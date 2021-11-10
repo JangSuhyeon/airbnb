@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-list">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/travel_detail.css">
+</th:block>
+
+<div layout:fragment="content">
+    <div class="main">
+        <div class="detail">
+            <h2 class="title"><i class="fas fa-arrow-left"></i>숙소 예약</h2>
+            <div CLASS="container">
+                <p class="sub"><span th:text="${home.address}">Gyeongju-si</span> · <span>2021년 6월 24일 – 2021년 6월 25일</span></p>
+                <h2 class="title">경숙님의 숙소</h2>
+                <div class="thumb swiper-container">
+                    <div class="swiper-wrapper" th:onclick="'location.href=\''+ @{/home/detail/{id}(id = ${home.id})} + '\''">
+                        <div class="swiper-slide" th:each="photo : ${home.photo}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
+                    </div>
+                    <div class="swiper-button-next"><i class="fas fa-chevron-circle-right"></i></div>
+                    <div class="swiper-button-prev"><i class="fas fa-chevron-circle-left"></i></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <h2 class="address" th:text="${home.name}">시에나</h2>
+                <div class="date-container">
+                    <div class="date">
+                        <h2>체크인</h2>
+                        <p>2021년 6월 24일 (목)</p>
+                        <p>오후 3:00</p>
+                    </div>
+                    <div class="date">
+                        <h2>체크아웃</h2>
+                        <p>2021년 6월 24일 (목)</p>
+                        <p>오후 3:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="payment">
+            <h2>결제 정보</h2>
+            <p class="title">총 비용</p>
+            <p>₩80870</p>
+        </div>
+    </div>
+    <th:block layout:fragment="script">
+        <script src="/js/travel.js"></script>
+    </th:block>
+</div>
+</html>
