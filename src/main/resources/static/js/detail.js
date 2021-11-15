@@ -50,8 +50,19 @@ $(function(){
         yearSuffix: '년'
     });
 
-    $( "#date_start" ).datepicker({onSelect: showDays});
-    $( "#date_end" ).datepicker({onSelect: showDays});
+    $( "#date_start" ).datepicker({
+        onSelect: showDays,
+        minDate: new Date(startDay),
+        maxDate: new Date(endDay),
+        onClose: function() {
+            var date = new Date($("#date_start").datepicker({dateFormat:"yy/mm/dd"}).val());
+            $("#date_end").datepicker({
+                onSelect: showDays,
+                minDate: date,
+                maxDate: new Date(endDay)
+            });
+        }
+    });
 });
 
 function showDays() {

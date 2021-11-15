@@ -11,26 +11,27 @@
         <div class="detail">
             <h2 class="title"><i class="fas fa-arrow-left"></i>숙소 예약</h2>
             <div CLASS="container">
-                <p class="sub"><span th:text="${home.address}">Gyeongju-si</span> · <span>2021년 6월 24일 – 2021년 6월 25일</span></p>
-                <h2 class="title">경숙님의 숙소</h2>
+                <p class="sub"><span th:text="${bookedHome.getHome().address}">Gyeongju-si</span> ·
+                    <span><span th:text="${bookedHome.getCheckin()}">2021년 6월 24일</span> - <span th:text="${bookedHome.getCheckout()}">2021년 6월 25일</span></span></p>
+                <h2 class="title"><span th:text="${bookedHome.getHome().getHost()}">경숙</span>님의 숙소</h2>
                 <div class="thumb swiper-container">
-                    <div class="swiper-wrapper" th:onclick="'location.href=\''+ @{/home/detail/{id}(id = ${home.id})} + '\''">
-                        <div class="swiper-slide" th:each="photo : ${home.photo}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
+                    <div class="swiper-wrapper" th:onclick="'location.href=\''+ @{/home/detail/{id}(id = ${bookedHome.getHome().id})} + '\''">
+                        <div class="swiper-slide" th:each="photo : ${bookedHome.getHome().photo}" th:utext='${"<img src=" + photo.filePath + ">"}'></div>
                     </div>
                     <div class="swiper-button-next"><i class="fas fa-chevron-circle-right"></i></div>
                     <div class="swiper-button-prev"><i class="fas fa-chevron-circle-left"></i></div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <h2 class="address" th:text="${home.name}">시에나</h2>
+                <h2 class="address" th:text="${bookedHome.getHome().name}">시에나</h2>
                 <div class="date-container">
                     <div class="date">
                         <h2>체크인</h2>
-                        <p>2021년 6월 24일 (목)</p>
+                        <p th:text="${bookedHome.getCheckin()}">2021년 6월 24일</p>
                         <p>오후 3:00</p>
                     </div>
                     <div class="date">
                         <h2>체크아웃</h2>
-                        <p>2021년 6월 24일 (목)</p>
+                        <p th:text="${bookedHome.getCheckout()}">2021년 6월 24일</p>
                         <p>오후 3:00</p>
                     </div>
                 </div>
@@ -40,6 +41,12 @@
             <h2>결제 정보</h2>
             <p class="title">총 비용</p>
             <p>₩80870</p>
+        </div>
+        <div class="btn-container" th:if="${status == 1}">
+            <a th:href="@{/book/cancel/{id}(id = ${bookedHome.getId()})}">예약 취소하기</a>
+        </div>
+        <div class="btn-container btn-container-cancel" th:if="${status == 3}">
+            <a>취소된 예약</a>
         </div>
     </div>
     <th:block layout:fragment="script">

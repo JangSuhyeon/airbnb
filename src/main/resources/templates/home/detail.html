@@ -50,11 +50,18 @@
                                     <div class="checkin">
                                         <p>체크인</p>
                                         <input type="text" id="date_start" name="checkin" class="date"/>
+<!--                                        <input th:type="hidden" th:value="${home.getStartDay()}">-->
                                     </div>
                                     <div class="checkout">
                                         <p>체크아웃</p>
                                         <input type="text" id="date_end" name="checkout" class="date"/>
                                     </div>
+                                    <script th:inline="javascript">
+                                        /*<![CDATA[*/
+                                        let startDay = /*[[ ${home.getStartDay()} ]]*/;
+                                        let endDay = /*[[ ${home.getEndDay()} ]]*/;
+                                        /*]]*/
+                                    </script>
                                 </div>
                                 <div class="guest-bot">
                                     <p>인원</p>

@@ -117,4 +117,14 @@ public class HomeService {
     public List<BookedHome> findHomeByUserId(Long userId) {
         return bookedHomeRepository.findAllByUseridAndStatus(userId, 1); // status가 1인 숙소만 조회
     }
+
+    // user id로 예약 취소된 숙소 찾기
+    public List<BookedHome> findcanceledHomeByUserId(Long userId) {
+        return bookedHomeRepository.findAllByUseridAndStatus(userId, 3); // status가 1인 숙소만 조회
+    }
+
+    //  예약 id로 예약 정보 찾기
+    public BookedHome findBookedHomeById(Long id) {
+        return bookedHomeRepository.findById(id).get();
+    }
 }

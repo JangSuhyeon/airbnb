@@ -27,7 +27,7 @@ header {
 }
 .detail {
     width:800px;
-    margin:80px auto 0;
+    margin:40px auto 0;
     background-color: #fff;
     border-radius: 8px 8px 0 0;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px !important;
@@ -50,10 +50,12 @@ header {
     padding:24px;
     box-sizing: border-box;
 }
-.detail > .container > p.sub > span {
+.detail > .container > p.sub > span,
+.detail > .container > p.sub > span > span {
     color:#717171;
 }
-.detail > .container > h2.title {
+.detail > .container > h2.title,
+.detail > .container > h2.title > span{
     font-size:32px;
     font-weight: bold;
     padding:10px 0 32px;
@@ -65,29 +67,29 @@ header {
     font-weight: bold;
     border-bottom:1px solid #EBEBEB;
 }
-.container > form > .date-container {
+.container > .date-container {
     border-bottom:1px solid #EBEBEB;
 }
-.container > form > .date-container::after {
+.container > .date-container::after {
     display: block;
     clear: both;
     content:'';
 }
-.container > form > .date-container > .date {
+.container > .date-container > .date {
     float:left;
     width:50%;
     padding:20px 0;
     padding-left: 20px;
     box-sizing: border-box;
 }
-.container > form > .date-container > .date:first-child {
+.container > .date-container > .date:first-child {
     border-right:1px solid #EBEBEB;
 }
-.container > form > .date-container > .date > h2 {
+.container > .date-container > .date > h2 {
     font-weight: bold;
     line-height: 20px;
 }
-.container > form > .date-container > .date > p {
+.container > .date-container > .date > p {
     margin-top:4px;
     line-height: 20px;
 }
@@ -173,4 +175,31 @@ header {
 }
 .payment > p:last-child {
     letter-spacing: 1px;
+}
+
+
+/* 예약 취소하기 버튼 */
+.btn-container {
+    width:800px;
+    padding:24px;
+    margin:8px auto 0;
+    box-sizing: border-box;
+    background-color: #777;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px !important;
+    border-radius: 0 0 10px 10px;
+    text-align:center;
+    cursor: pointer;
+}
+.btn-container > a {
+    font-weight: bold;
+    color:#fff;
+}
+.btn-container:hover {
+    background-color: #666;
+}
+.btn-container-cancel {
+    cursor: default;
+}
+.btn-container-cancel:hover {
+    background: #777;
 }
