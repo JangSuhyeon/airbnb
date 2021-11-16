@@ -50,12 +50,19 @@ $(function(){
         yearSuffix: '년'
     });
 
+    let minDate;
+    if(new Date(startDay) > new Date()) {
+        minDate = new Date(startDay);
+    }else {
+        minDate = new Date();
+    }
+
     $( "#date_start" ).datepicker({
         onSelect: showDays,
-        minDate: new Date(startDay),
+        minDate: new Date(minDate),
         maxDate: new Date(endDay),
         onClose: function() {
-            var date = new Date($("#date_start").datepicker({dateFormat:"yy/mm/dd"}).val());
+            let date = new Date($("#date_start").datepicker({dateFormat:"yy-mm-dd"}).val());
             $("#date_end").datepicker({
                 onSelect: showDays,
                 minDate: date,

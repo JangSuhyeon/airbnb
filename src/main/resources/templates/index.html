@@ -53,20 +53,8 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function () {
-
-                var bodyOffset = jQuery('body').offset();
-                $(window).scroll(function() { // 윈도우 스크롤 이벤트 시
-                    if ($(document).scrollTop() > bodyOffset.top) {
-                        $('header').addClass('scroll');
-                        $('.header-container .logo > img').attr("src", 'images/logo_pk.png');
-                    } else {
-                        $('header').removeClass('scroll');
-                        $('.header-container .logo > img').attr("src", 'images/logo_wh.png');
-                    }
-                });
-            });
-        </script>
+        <th:block layout:fragment="script">
+            <script src="/js/index.js"></script>
+        </th:block>
     </div>
 </html>

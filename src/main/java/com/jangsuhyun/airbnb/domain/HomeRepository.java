@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface HomeRepository extends JpaRepository<Home, Long> {
 
-    List<Home> findByStartDayGreaterThanEqualAndEndDayLessThanEqualAndGuestGreaterThanEqual(Date startDay, Date endDay, int guestCnt);
+    List<Home> findByStartDayLessThanEqualAndEndDayGreaterThanEqualAndGuestGreaterThanEqual(Date startDay, Date endDay, int guestCnt);
 }

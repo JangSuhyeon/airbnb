@@ -50,7 +50,11 @@ public class IndexController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // String -> date 위함
         Date startday = new Date(dateFormat.parse(request.getParameter("startday")).getTime());
         Date endday = new Date(dateFormat.parse(request.getParameter("endday")).getTime());
+
         int guestCnt = Integer.parseInt(request.getParameter("guestCnt"));
+
+        System.out.println(startday + " 시작 날짜 ");
+
         HomeSearchRequestDto requestDto = new HomeSearchRequestDto(startday, endday, guestCnt);
         model.addAttribute("homes", homeService.findByDate(requestDto));
 
@@ -97,64 +101,6 @@ public class IndexController {
         model.addAttribute("facilites",homeService.findAllFacilities());
 
         return "home/edit";
-    }
-
-    // 여행 페이지로 이동
-    @GetMapping("/mypage/travel")
-    public String goToTravel(@LoginUser SessionUser user, Model model){
-
-        model.addAttribute("bookedHome", homeService.findHomeByUserId(user.getId()));
-        model.addAttribute("canceledHome", homeService.findcanceledHomeByUserId(user.getId()));
-
-        return "mypage/travel";
-    }
-
-    // 숙소를 예약했을 때
-    @PostMapping("/book/save")
-    public String bookComplete(BookedHomeSaveRequestDto requestDto, @LoginUser SessionUser user)
-            throws ParseException {
-
-        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
-
-        LocalDate checkIn = LocalDate.parse(requestDto.getCheckin(), formatter1); //체크인 날짜 형식 변환
-        LocalDate checkOut = LocalDate.parse(requestDto.getCheckout(), formatter1); //체크아웃 날짜 형식 변환
-
-        BookedHome bookedHome = BookedHome.builder()
-                .userid(user.getId())
-                .status(1)
-                .home(homeService.findById(requestDto.getId()))
-                .checkin(checkIn.format(formatter2))
-                .checkout(checkOut.format(formatter2))
-                .build();
-
-        homeService.addBookedHome(bookedHome);
-
-        return "redirect:/mypage/travel";
-    }
-
-    // 숙소 예약을 취소했을 때
-    @GetMapping("/book/cancel/{id}")
-    public String bookCancle(@PathVariable Long id) {
-
-        BookedHome bookedHome = homeService.findBookedHomeById(id);
-        bookedHome.updateStatus(3);
-
-        return "redirect:/mypage/travel";
-    }
-
-    // 예약 상세 페이지로 이동
-    @GetMapping("/mypage/travel/{id}/{status}")
-    public String goToTravelDetail(@PathVariable Long id, @PathVariable int status, Model model){
-
-        // 로그인 한 유저와 동일한지 체크 필요
-
-        BookedHome bookedHome = homeService.findBookedHomeById(id);
-
-        model.addAttribute("bookedHome", bookedHome);
-        model.addAttribute("status", status);
-
-        return "mypage/travel_detail";
     }
 
 }

@@ -25,7 +25,6 @@ public class HomeService {
     private final FacilitiesRepository facilitiesRepository;
     private final FileHandler fileHandler;
     private final PhotoRepository photoRepository;
-    private final BookedHomeRepository bookedHomeRepository;
 
     // 숙소 전체 불러오기
     public List<Home> findAll() {
@@ -100,31 +99,8 @@ public class HomeService {
     // 검색한 날짜의 숙소 찾기
     public List<Home> findByDate(HomeSearchRequestDto requestDto) {
 
-        List<Home> homes = homeRepository.findByStartDayGreaterThanEqualAndEndDayLessThanEqualAndGuestGreaterThanEqual(requestDto.getStartday(), requestDto.getEndday(), requestDto.getGuestCnt());
+        List<Home> homes = homeRepository.findByStartDayLessThanEqualAndEndDayGreaterThanEqualAndGuestGreaterThanEqual(requestDto.getStartday(), requestDto.getEndday(), requestDto.getGuestCnt());
         return homes;
 
-    }
-
-    // 숙소 예약하기
-    @Transactional
-    public void addBookedHome(BookedHome bookedHome) {
-
-        bookedHomeRepository.save(bookedHome);
-
-    }
-
-    // user id로 현재 예약중인 숙소 찾기
-    public List<BookedHome> findHomeByUserId(Long userId) {
-        return bookedHomeRepository.findAllByUseridAndStatus(userId, 1); // status가 1인 숙소만 조회
-    }
-
-    // user id로 예약 취소된 숙소 찾기
-    public List<BookedHome> findcanceledHomeByUserId(Long userId) {
-        return bookedHomeRepository.findAllByUseridAndStatus(userId, 3); // status가 1인 숙소만 조회
-    }
-
-    //  예약 id로 예약 정보 찾기
-    public BookedHome findBookedHomeById(Long id) {
-        return bookedHomeRepository.findById(id).get();
     }
 }
