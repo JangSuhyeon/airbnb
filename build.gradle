@@ -22,6 +22,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0' // 파일 관련 처리
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools' // 정적 리소스 실시간 처리를 위함
 	compileOnly 'org.projectlombok:lombok'
@@ -33,6 +34,7 @@ dependencies {
 	implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.5.1' // 로그인 여부에 따라 노출
 	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
 	implementation 'org.springframework.session:spring-session-jdbc' // 데이터베이스를 세션 저장소로 사용하기 위함
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1' // json 파싱을 위함
 }
 
 test {

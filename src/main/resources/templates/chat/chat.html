@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <meta charset="UTF-8">
+    <title>chat</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .container{
+            width: 500px;
+            margin: 0 auto;
+            padding: 25px
+        }
+        .container h1{
+            text-align: left;
+            padding: 5px 5px 5px 15px;
+            color: #FFBB00;
+            border-left: 3px solid #FFBB00;
+            margin-bottom: 20px;
+        }
+        .chating{
+            background-color: #000;
+            width: 500px;
+            height: 500px;
+            overflow: auto;
+        }
+        .chating .me{
+            color: #F6F6F6;
+            text-align: right;
+        }
+        .chating .others{
+            color: #FFE400;
+            text-align: left;
+        }
+        input{
+            width: 330px;
+            height: 25px;
+        }
+        #yourMsg{
+            display: none;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    var ws;
+
+    function chatName() {
+        var userName = $("#userName").val();
+        if (userName == null && userName.trim() == "") {
+            // 사용자 이름이 입력되지 않았다면
+            alert("사용자 이름을 입력해주세요");
+            $("#userName").focus();
+        }else {
+            wsOpen();
+            $("#yourName").hide(); // 사용자 이름 입력란 숨기기
+            $("#yourMsg").show(); // 채팅란 보여주기
+        }
+    }
+
+    function wsOpen() { // 웹 소켓 연결
+        ws = new WebSocket("ws://" + location.host + "/chating");
+        wsEvt();
+    }
+
+    function wsEvt() {
+        ws.onopen = function (data) {
+            //  웹 소켓이 열리면 초기화 세팅
+        }
+
+        ws.onmessage = function (data) {
+            // 메시지를 발송하면
+            var msg = data.data; // ??여기에는 무엇이 있을까?
+            if (msg != null && msg.trim() != "") {
+                var d = JSON.parse(msg);
+                if (d.type == "getId") { // ???
+                    var si = d.sessionId != null ? d.sessionId : "";
+                    if (si != "") {
+                        $("#sessionId").val(si);
+                    }
+                }else if (d.type == "message") {
+                    if (d.sessionId == $("#sessionId").val()) {
+                        $("#chating").append("<p class='me'>나 :" + d.msg + "</p>");
+                    }else{
+                        $("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+                    }
+                }else {
+                    console.warn("unknown type!");
+                }
+            }
+        }
+
+        document.addEventListener("keypress", function (e) {
+            if(e.key == 13){ // 수정필요
+                send();
+            }
+        });
+    }
+
+    function send() {
+       var option = {
+           type: "message",
+           sessionId: $("#sessionId").val(),
+           userName: $("#userName").val(),
+           msg: $("#chatting").val()
+       }
+       ws.send(JSON.stringify(option));
+        $("#chatting").val(""); // 채팅란 초기화
+    }
+</script>
+<body>
+    <div id="container" class="container">
+        <h1>채팅</h1>
+        <input type="hidden" id="sessionId" value="">
+
+        <div id="chating" class="chating">
+            <!-- $("#chating").append("<p>" + msp + "</p>") 추가되는 곳 -->
+        </div>
+
+        <div id="yourName">
+            <table class="inputTable">
+                <tr>
+                    <th>사용자명</th>
+                    <th><input type="text" name="userName" id="userName"></th>
+                    <th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+                </tr>
+            </table>
+        </div>
+        <div id="yourMsg">
+            <table class="inputTable">
+                <tr>
+                    <th>메시지</th>
+                    <th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+                    <th><button onclick="send()" id="sendBtn">보내기</button></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
