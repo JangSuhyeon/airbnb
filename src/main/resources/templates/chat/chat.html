@@ -1,145 +1,121 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <meta charset="UTF-8">
-    <title>Chating</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-        }
-        .container{
-            width: 500px;
-            margin: 0 auto;
-            padding: 25px
-        }
-        .container h1{
-            text-align: left;
-            padding: 5px 5px 5px 15px;
-            color: #FFBB00;
-            border-left: 3px solid #FFBB00;
-            margin-bottom: 20px;
-        }
-        .chating{
-            background-color: #000;
-            width: 500px;
-            height: 500px;
-            overflow: auto;
-        }
-        .chating .me{
-            color: #F6F6F6;
-            text-align: right;
-        }
-        .chating .others{
-            color: #FFE400;
-            text-align: left;
-        }
-        input{
-            width: 330px;
-            height: 25px;
-        }
-        #yourMsg{
-            display: none;
-        }
-    </style>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-list">
 
-<script type="text/javascript">
-    var ws;
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/chatting.css">
+</th:block>
 
-    function wsOpen(){
-        //웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-        ws = new WebSocket("ws://" + location.host + "/chating/"+$("#roomNumber").val());
-        wsEvt();
-    }
+<div layout:fragment="content">
+    <div class="main">
+        <!-- 숙소 리스트 -->
+        <div class="list-container">
+            <h2>메시지</h2>
+            <div class="list">
+                <div class="msg on">
+                    <div class="img"><span><img src="images/h05.jpg"></span></div>
+                    <div class="info">
+                        <p class="name">경숙</p>
+                        <p class="text">예약 취소되었습니다. 감사합니다.</p>
+                        <p class="date"><span>예약취소</span> · <span>5월 27일 - 5월 29일</span></p>
+                    </div>
+                </div>
+                <div class="msg ">
+                    <div class="img"><span><img src="images/h05.jpg"></span></div>
+                    <div class="info">
+                        <p class="name">경숙</p>
+                        <p class="text">예약 취소되었습니다. 감사합니다.</p>
+                        <p class="date"><span>예약취소</span> · <span>5월 27일 - 5월 29일</span></p>
+                    </div>
+                </div>
+                <div class="msg">
+                    <div class="img"><span><img src="images/h05.jpg"></span></div>
+                    <div class="info">
+                        <p class="name">경숙</p>
+                        <p class="text">예약 취소되었습니다. 감사합니다.</p>
+                        <p class="date"><span>예약취소</span> · <span>5월 27일 - 5월 29일</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 호스트와 채팅 -->
+        <div class="chatting-container">
+            <div class="title">
+                <div class="host">
+                    <p>경숙</p>
+                    <span>응답 시간:1시간</span>
+                </div>
+                <div class="hide">세부 정보 숨기기</div>
+            </div>
+            <div id="container" class="container">
+                <h1><span th:text="${roomName}"></span>의 채팅방</h1>
+                <input type="hidden" id="sessionId" value="">
+                <input type="hidden" id="roomNumber" th:value="${roomNumber}">
 
-    function wsEvt() {
-        ws.onopen = function(data){
-            //소켓이 열리면 동작
-        }
+                <div id="chating" class="chating">
+                </div>
 
-        ws.onmessage = function(data) {
-            //메시지를 받으면 동작
-            var msg = data.data;
-            if(msg != null && msg.trim() != ''){
-                var d = JSON.parse(msg);
-                if(d.type == "getId"){
-                    var si = d.sessionId != null ? d.sessionId : "";
-                    if(si != ''){
-                        $("#sessionId").val(si);
-                    }
-                }else if(d.type == "message"){
-                    if(d.sessionId == $("#sessionId").val()){
-                        $("#chating").append("<p class='me'>나 :" + d.msg + "</p>");
-                    }else{
-                        $("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
-                    }
-
-                }else{
-                    console.warn("unknown type!")
-                }
-            }
-        }
-
-        document.addEventListener("keypress", function(e){
-            if(e.keyCode == 13){ //enter press
-                send();
-            }
-        });
-    }
-
-    function chatName(){
-        var userName = $("#userName").val();
-        if(userName == null || userName.trim() == ""){
-            alert("사용자 이름을 입력해주세요.");
-            $("#userName").focus();
-        }else{
-            wsOpen();
-            $("#yourName").hide();
-            $("#yourMsg").show();
-        }
-    }
-
-    function send() {
-        var option ={
-            type: "message",
-            roomNumber: $("#roomNumber").val(),
-            sessionId : $("#sessionId").val(),
-            userName : $("#userName").val(),
-            msg : $("#chatting").val()
-        }
-        ws.send(JSON.stringify(option))
-        $('#chatting').val("");
-    }
-</script>
-<body>
-<div id="container" class="container">
-    <h1><span th:text="${roomName}"></span>의 채팅방</h1>
-    <input type="hidden" id="sessionId" value="">
-    <input type="hidden" id="roomNumber" th:value="${roomNumber}">
-
-    <div id="chating" class="chating">
+                <div id="yourName">
+                    <table class="inputTable">
+                        <tr>
+                            <th>사용자명</th>
+                            <th><input type="text" name="userName" id="userName"></th>
+                            <th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+                        </tr>
+                    </table>
+                </div>
+                <div id="yourMsg">
+                    <table class="inputTable">
+                        <tr>
+                            <th>메시지</th>
+                            <th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+                            <th><button onclick="send()" id="sendBtn">보내기</button></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- 숙소 정보 -->
+        <div class="detail-container">
+            <div class="detail">
+                <h2 class="title">숙소 예약<i class="fas fa-times"></i></h2>
+                <div CLASS="container">
+                    <p class="sub"><span>Gyeongju-si</span> · <span>2021년 6월 24일 – 2021년 6월 25일</span></p>
+                    <h2 class="title">경숙님의 숙소</h2>
+                    <div class="thumb swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="images/h01.jpg"></div>
+                            <div class="swiper-slide"><img src="images/h02.jpeg"></div>
+                            <div class="swiper-slide"><img src="images/h03.jpg"></div>
+                        </div>
+                        <div class="swiper-button-next"><i class="fas fa-chevron-circle-right"></i></div>
+                        <div class="swiper-button-prev"><i class="fas fa-chevron-circle-left"></i></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <h2 class="address">시에나</h2>
+                    <div class="date-container">
+                        <div class="date">
+                            <h2>체크인</h2>
+                            <p>2021년 6월 24일 (목)</p>
+                            <p>오후 3:00</p>
+                        </div>
+                        <div class="date">
+                            <h2>체크아웃</h2>
+                            <p>2021년 6월 24일 (목)</p>
+                            <p>오후 3:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment">
+                <h2>결제 정보</h2>
+                <p class="title">총 비용</p>
+                <p>₩80870</p>
+            </div>
+        </div>
     </div>
-
-    <div id="yourName">
-        <table class="inputTable">
-            <tr>
-                <th>사용자명</th>
-                <th><input type="text" name="userName" id="userName"></th>
-                <th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
-            </tr>
-        </table>
-    </div>
-    <div id="yourMsg">
-        <table class="inputTable">
-            <tr>
-                <th>메시지</th>
-                <th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-                <th><button onclick="send()" id="sendBtn">보내기</button></th>
-            </tr>
-        </table>
-    </div>
+    <th:block layout:fragment="script">
+        <script src="/js/travel.js"></script>
+    </th:block>
 </div>
-</body>
 </html>
